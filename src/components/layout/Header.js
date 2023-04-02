@@ -2,19 +2,21 @@ import React, { useEffect, useState } from 'react';
 // import { connect } from 'react-redux';
 import Search from '../ecommerce/Search';
 import { Link } from 'react-router-dom';
-import compareIcon from '../../imgs/theme/icons/icon-compare.svg'
-import hotIcon from '../../imgs/theme/icons/icon-hot.svg'
-import icon4 from '../../imgs/theme/icons/icon-4.svg'
-import icon3 from '../../imgs/theme/icons/icon-3.svg'
-import icon2 from '../../imgs/theme/icons/icon-2.svg'
-import icon1 from '../../imgs/theme/icons/icon-1.svg'
-import logo from '../../imgs/theme/logo.svg'
-import userIcon from '../../imgs/theme/icons/icon-user.svg'
-import cartIcon from '../../imgs/theme/icons/icon-cart.svg'
-import heartIcon from '../../imgs/theme/icons/icon-heart.svg'
-import flagFr from '../../imgs/theme/flag-fr.png'
+import compareIcon from '../../imgs/theme/icons/icon-compare.svg';
+import hotIcon from '../../imgs/theme/icons/icon-hot.svg';
+import icon4 from '../../imgs/theme/icons/icon-4.svg';
+import icon3 from '../../imgs/theme/icons/icon-3.svg';
+import icon2 from '../../imgs/theme/icons/icon-2.svg';
+import icon1 from '../../imgs/theme/icons/icon-1.svg';
+// import logo from '../../imgs/theme/logo.svg';
+import userIcon from '../../imgs/theme/icons/icon-user.svg';
+import cartIcon from '../../imgs/theme/icons/icon-cart.svg';
+import heartIcon from '../../imgs/theme/icons/icon-heart.svg';
+import flagFr from '../../imgs/theme/flag-fr.png';
 import CategoryProduct2 from '../ecommerce/Filter/CategoryProduct2';
 import CategoryProduct3 from '../ecommerce/Filter/CategoryProduct3';
+import { useSelector } from 'react-redux';
+import { selectCartProductsCount, selectCartProducts } from '../../features/cart/cartSlice';
 
 const Header = ({
   // totalCartItems,
@@ -24,6 +26,10 @@ const Header = ({
 }) => {
   const [isToggled, setToggled] = useState(false);
   const [scroll, setScroll] = useState(0);
+  const cartProductsCount = useSelector(selectCartProductsCount);
+  const cartProducts = useSelector(selectCartProducts);
+
+  console.log({ cartProducts });
 
   useEffect(() => {
     document.addEventListener('scroll', () => {
@@ -69,9 +75,7 @@ const Header = ({
                     <ul>
                       <li>
                         Get great devices up to 50% off
-                        <Link href='/shop-grid-right'>
-                          View details
-                        </Link>
+                        <Link href='/shop-grid-right'>View details</Link>
                       </li>
                     </ul>
                   </div>
@@ -96,11 +100,13 @@ const Header = ({
                       </ul>
                     </li>
                     <li>
+                      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                       <a className='language-dropdown-active' href='#'>
                         DT <i className='fi-rs-angle-small-down'></i>
                       </a>
                       <ul className='language-dropdown'>
                         <li>
+                          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                           <a href='#'>
                             <img src={flagFr} alt='' />
                             EUR
@@ -180,12 +186,9 @@ const Header = ({
                     </div>
                     <div className='header-action-icon-2'>
                       <Link className='mini-cart-icon' to='/shop-cart'>
-                        <img
-                          alt='Evara'
-                          src={cartIcon}
-                        />
+                        <img alt='Evara' src={cartIcon} />
                         <span className='pro-count blue'>
-                          {/* {totalCartItems} */}
+                          {cartProductsCount}
                         </span>
                       </Link>
                       <Link to='/shop-cart'>
@@ -195,11 +198,7 @@ const Header = ({
 
                     <div className='header-action-icon-2'>
                       <Link to='/page-account'>
-                        <img
-                          className='svgInject'
-                          alt='Nest'
-                          src={userIcon}
-                        />
+                        <img className='svgInject' alt='Nest' src={userIcon} />
                       </Link>
                       <Link to='/page-account'>
                         <span className='lable ml-0'>Compte</span>
@@ -261,6 +260,7 @@ const Header = ({
               </div>
               <div className='header-nav d-none d-lg-flex'>
                 <div className='main-categori-wrap d-none d-lg-block'>
+                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                   <a
                     className='categories-button-active'
                     onClick={handleToggle}
@@ -290,20 +290,14 @@ const Header = ({
                           <li>
                             <Link to='/products'>
                               {' '}
-                              <img
-                                src={icon1}
-                                alt=''
-                              />
+                              <img src={icon1} alt='' />
                               Milks and Dairies
                             </Link>
                           </li>
                           <li>
                             <Link to='/products'>
                               {' '}
-                              <img
-                                src={icon2}
-                                alt=''
-                              />
+                              <img src={icon2} alt='' />
                               Clothing & beauty
                             </Link>
                           </li>
@@ -312,20 +306,14 @@ const Header = ({
                           <li>
                             <Link to='/products'>
                               {' '}
-                              <img
-                                src={icon3}
-                                alt=''
-                              />
+                              <img src={icon3} alt='' />
                               Wines & Drinks
                             </Link>
                           </li>
                           <li>
                             <Link to='/products'>
                               {' '}
-                              <img
-                                src={icon4}
-                                alt=''
-                              />
+                              <img src={icon4} alt='' />
                               Fresh Seafood
                             </Link>
                           </li>
@@ -342,10 +330,7 @@ const Header = ({
                   <nav>
                     <ul>
                       <li className='hot-deals'>
-                        <img
-                          src={hotIcon}
-                          alt='hot deals'
-                        />
+                        <img src={hotIcon} alt='hot deals' />
                         <Link to='/products'>Hot Deals</Link>
                       </li>
                       <li>
@@ -365,6 +350,7 @@ const Header = ({
                       </li>
 
                       <li>
+                        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                         <a href='#'>
                           Fournisseurs <i className='fi-rs-angle-down'></i>
                         </a>
