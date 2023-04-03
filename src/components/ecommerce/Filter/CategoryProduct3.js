@@ -37,6 +37,7 @@ const CategoryProduct3 = () => {
         <>
             <ul>
                 <li onClick={(e) => selectCategory(e, "jeans")}>
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                     <a>
                         <img
                             src={category1}
@@ -47,6 +48,7 @@ const CategoryProduct3 = () => {
                     
                 </li>
                 <li onClick={(e) => selectCategory(e, "shoe")}>
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                     <a>
                         <img
                             src={category2}
@@ -57,6 +59,7 @@ const CategoryProduct3 = () => {
                     
                 </li>
                 <li onClick={(e) => selectCategory(e, "jacket")}>
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                     <a>
                         <img
                             src={category3}
@@ -67,6 +70,7 @@ const CategoryProduct3 = () => {
                     
                 </li>
                 <li onClick={(e) => selectCategory(e, "trousers")}>
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                     <a>
                         <img
                             src={category4}
@@ -77,6 +81,7 @@ const CategoryProduct3 = () => {
                     
                 </li>
                 <li onClick={(e) => selectCategory(e, "accessories")}>
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                     <a>
                         <img
                             src={category5}
