@@ -1,26 +1,31 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { store } from './app/store';
-import App from './App';
-import Cart from './pages/shop-cart';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { Provider } from "react-redux";
+import { store } from "./app/store";
+import App from "./App";
+import Cart from "./pages/shop-cart";
+import reportWebVitals from "./reportWebVitals";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import StorageWrapper from "./components/ecommerce/storage-wrapper";
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
-} from 'react-router-dom';
-import './index.css';
+} from "react-router-dom";
+import "./index.css";
+import Wishlist from "./pages/shop-wishlist";
 
-const container = document.getElementById('root');
+const container = document.getElementById("root");
 const root = createRoot(container);
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path='/' element={<App />} />
-      <Route path='/shop-cart' element={<Cart />} />
+      <Route path="/" element={<App />} />
+      <Route path="/shop-cart" element={<Cart />} />
+      <Route path="/shop-Wishlist" element={<Wishlist />} />
       {/* ... etc. */}
     </>
   )
@@ -29,7 +34,10 @@ const router = createBrowserRouter(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <StorageWrapper>
+        <RouterProvider router={router} />
+        <ToastContainer autoClose={1000} />
+      </StorageWrapper>
     </Provider>
   </React.StrictMode>
 );

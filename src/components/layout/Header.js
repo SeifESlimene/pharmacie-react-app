@@ -17,6 +17,7 @@ import CategoryProduct2 from '../ecommerce/Filter/CategoryProduct2';
 import CategoryProduct3 from '../ecommerce/Filter/CategoryProduct3';
 import { useSelector } from 'react-redux';
 import { selectCartProductsCount, selectCartProducts } from '../../features/cart/cartSlice';
+import { selectWishListProductsCount } from '../../features/wishList/wishListSlice';
 
 const Header = ({
   // totalCartItems,
@@ -27,9 +28,7 @@ const Header = ({
   const [isToggled, setToggled] = useState(false);
   const [scroll, setScroll] = useState(0);
   const cartProductsCount = useSelector(selectCartProductsCount);
-  const cartProducts = useSelector(selectCartProducts);
-
-  console.log({ cartProducts });
+  const wishlistProductsCount = useSelector(selectWishListProductsCount);
 
   useEffect(() => {
     document.addEventListener('scroll', () => {
@@ -177,7 +176,7 @@ const Header = ({
                           src={heartIcon}
                         />
                         <span className='pro-count blue'>
-                          {/* {totalWishlistItems} */}
+                           {wishlistProductsCount} 
                         </span>
                       </Link>
                       <Link to='/shop-wishlist'>

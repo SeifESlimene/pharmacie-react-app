@@ -159,7 +159,6 @@ const Cart = () => {
                             </h4>
                           </td>
                           <td className='action' data-title='Remove'>
-                            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                             <a
                               onClick={(e) => dispatch(deleteFromCart(item.id))}
                               className='text-muted'
