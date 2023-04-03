@@ -11,6 +11,7 @@ import {
 // import { openQuickView } from "../../redux/action/quickViewAction";
 // import { addToWishlist } from "../../redux/action/wishlistAction";
 import { addToCart } from '../../features/cart/cartSlice';
+import { addToWishList } from '../../features/wishList/wishListSlice';
 
 const SingleProduct = ({
   product,
@@ -21,7 +22,6 @@ const SingleProduct = ({
 }) => {
   const dispatch = useDispatch();
   const handleCart = (product) => {
-    console.log('inside handleCart');
     dispatch(addToCart(product));
     toast('Product added to Cart !');
   };
@@ -31,10 +31,10 @@ const SingleProduct = ({
   //     toast("Added to Compare list !");
   // };
 
-  //   const handleWishlist = (product) => {
-  //       addToWishlist(product);
-  //       toast("Added to Wishlist !");
-  //   };
+    const handleWishlist = (product) => {
+        dispatch(addToWishList(product));
+        toast("Added to Wishlist !");
+    };
   return (
     <>
       <div className='product-cart-wrap mb-30'>
@@ -59,10 +59,9 @@ const SingleProduct = ({
               <i className='fi-rs-eye'></i>
             </a>
             <a
-              href='/'
               aria-label='Add To Wishlist'
               className='action-btn hover-up'
-              //   onClick={(e) => handleWishlist(product)}
+                onClick={(e) => handleWishlist(product)}
             >
               <i className='fi-rs-heart'></i>
             </a>
@@ -123,7 +122,6 @@ const SingleProduct = ({
               </span>
             </div>
             <div className='add-cart'>
-              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
               <a className='add' onClick={(e) => handleCart(product)}>
                 <i className='fi-rs-shopping-cart mr-5'></i> Add
               </a>
