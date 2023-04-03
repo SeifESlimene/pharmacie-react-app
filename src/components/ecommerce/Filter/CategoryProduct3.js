@@ -31,7 +31,6 @@ const CategoryProduct3 = () => {
         //         cat: category, //
         //     },
         // });
-        //hhhhhhh
     };
     return (
         <>
