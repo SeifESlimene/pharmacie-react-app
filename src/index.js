@@ -16,6 +16,7 @@ import {
 } from "react-router-dom";
 import "./index.css";
 import Wishlist from "./pages/shop-wishlist";
+import Compare from "./pages/shop-compare";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -26,6 +27,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<App />} />
       <Route path="/shop-cart" element={<Cart />} />
       <Route path="/shop-Wishlist" element={<Wishlist />} />
+      <Route path="/shop-compare" element={<Compare />} />
       {/* ... etc. */}
     </>
   )
