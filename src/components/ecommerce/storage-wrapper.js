@@ -7,12 +7,13 @@ const StorageWrapper = (props) => {
   const dispatch = useDispatch();
   useEffect(() => {
     const cart = storage.get("dokani_cart") || [];
-    const wishlist = storage.get("dokani_wishlist") || [];
+    const wishList = storage.get("dokani_wishlist") || [];
+   // debugger
     // const compare = storage.get("dokani_compare") || [];
 
     const storedItems = {
       cart,
-      wishlist,
+      wishList,
       //  compare
     };
 

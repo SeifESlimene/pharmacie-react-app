@@ -13,6 +13,7 @@ import {
 import { addToCart } from "../../features/cart/cartSlice";
 import { addToWishList } from "../../features/wishList/wishListSlice";
 import { addToCompare } from "../../features/compare/compareSlice";
+import {openQuickView} from '../../features/quickView/quickViewSlice';
 
 const SingleProduct = ({
   product,
@@ -42,7 +43,7 @@ const SingleProduct = ({
         <div className="product-img-action-wrap">
           <div className="product-img product-img-zoom">
             <Link
-              to="/products/:slug"
+              to="/products/:id"
               // as={`/products/${product.slug}`}
             >
               <img className="default-img" src={product.images[0].img} alt="" />
@@ -55,7 +56,7 @@ const SingleProduct = ({
               aria-label="Quick view"
               className="action-btn hover-up"
               data-bs-toggle="modal"
-              // onClick={(e) => openQuickView(product)}
+             onClick={(e) => dispatch(openQuickView(product))}
             >
               <i className="fi-rs-eye"></i>
             </a>

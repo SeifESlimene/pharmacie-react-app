@@ -4,6 +4,7 @@ import cartReducer from '../features/cart/cartSlice';
 import wishListReducer from '../features/wishList/wishListSlice';
 //import localStorageReducer from '../features/localStorage/localStorageSlice';
 import compareReducer from '../features/compare/compareSlice';
+import quickViewReducer from '../features/quickView/quickViewSlice';
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     cart: cartReducer,
     wishList: wishListReducer,
     compare: compareReducer,
+    quickView: quickViewReducer
    // localStorage: localStorageReducer
   },
 });
