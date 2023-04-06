@@ -16,6 +16,11 @@ import {
 } from "react-router-dom";
 import "./index.css";
 import Wishlist from "./pages/shop-wishlist";
+import Compare from "./pages/shop-compare";
+import Account from "./pages/page-account";
+import Login from "./pages/page-login";
+import Register from "./pages/page-register";
+import About from "./pages/page-about";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -26,6 +31,13 @@ const router = createBrowserRouter(
       <Route path="/" element={<App />} />
       <Route path="/shop-cart" element={<Cart />} />
       <Route path="/shop-Wishlist" element={<Wishlist />} />
+      <Route path="/shop-compare" element={<Compare />} />
+      <Route path="/page-account" element={<Account />} />
+      <Route path="/page-login" element={<Login />} />
+      <Route path="/page-register" element={<Register />} />
+      <Route path="/page-about" element={<About />} />
+
+
       {/* ... etc. */}
     </>
   )
