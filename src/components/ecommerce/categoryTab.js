@@ -5,8 +5,6 @@ import Cat1Tab from '../elements/FeaturedTab';
 // import Cat3Tab from '../elements/TrendingTab';
 // import productData from "../../product.json";
 
-// console.log({ server })
-
 function CategoryTab() {
     const [active, setActive] = useState("1");
     const [catAll, setCatAll] = useState([]);

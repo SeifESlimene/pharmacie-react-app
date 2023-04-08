@@ -7,3 +7,8 @@ export const findProductIndexById = (list, id) => {
   const index = list.findIndex((item) => item.id === id);
   return index;
 };
+
+export const findProductIndex = (list, slug) => {
+  const index = list.findIndex((item) => item.slug === slug);
+  return index;
+};

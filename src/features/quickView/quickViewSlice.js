@@ -1,28 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-
-const initialState = [];
+const initialState = null;
 
 export const quickViewSlice = createSlice({
   name: 'quickView',
   initialState,
   reducers: {
-    openQuickView:(state, action) => {
-        return action.payload;
+    openQuickView: (state, action) => {
+      return action.payload;
+    },
+    closeQuickView: () => {
+      return null;
+    },
   },
-  closeQuickView :()=>{
-    return null;
-  }
-}
 });
 
-export const {
-    openQuickView,
-    closeQuickView
-} = quickViewSlice.actions;
+export const { openQuickView, closeQuickView } = quickViewSlice.actions;
 
 export const selectQuickViewProductsCount = (state) => state.quickView.length;
 
-export const selecQuickViewProducts = (state) => state.quickView;
+export const selectQuickViewProducts = (state) => state.quickView;
 
 export default quickViewSlice.reducer;
