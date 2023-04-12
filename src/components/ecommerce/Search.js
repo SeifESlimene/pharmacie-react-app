@@ -1,18 +1,18 @@
-// import { useRouter } from "next/router";
+import { createSearchParams, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 
 const Search = () => {
     const [searchTerm, setSearchTerm] = useState("");
-    // const router = useRouter();
+    const navigate= useNavigate();
 
     const handleSearch = () => {
-        // router.push({
-        //     pathname: "/products",
-        //     query: {
-        //         search: searchTerm,
-        //     },
-        // });
-        setSearchTerm("");
+        navigate({
+            pathname: "/products",
+            search:createSearchParams({
+                search: searchTerm
+            }) .toString()
+        });
+        setSearchTerm(""); 
     };
 
     const handleInput = (e) => {
