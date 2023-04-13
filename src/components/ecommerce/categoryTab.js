@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 // import { server } from "../../config";
 import Cat1Tab from '../elements/FeaturedTab';
+import { useGetProductsQuery } from '../../api/productApi';
+
 // import Cat2Tab from '../elements/NewArrivalTab';
 // import Cat3Tab from '../elements/TrendingTab';
 // import productData from "../../product.json";

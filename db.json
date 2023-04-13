@@ -1,0 +1,12 @@
+{
+  "posts": [
+    { "id": 1, "title": "json-server", "author": "typicode" }
+  ],
+  "product": [
+    { "id": 1, "reference": "pack-proteine-clere-3x120ml", "price": "49.000", "name" :"PACK PROTEINE CLERE 3 X 120ML", "description": "Le pack Proteine Clére est composé de :  Shampooing clarifiant 120ml Dose Protéine 120ml  Fixateur 120ml", "image": "https://www.parapharm.tn/products/5497-pack-proteine-clere-3x120ml.png", "tva": "10", "subCategoryId": "5", "productDiscountId": "2" }
+  ],
+  "comments": [
+    { "id": 1, "body": "some comment", "postId": 1 }
+  ],
+  "profile": { "name": "typicode" }
+}

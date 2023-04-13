@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Layout from './../components/layout/Layout';
 //import ShowSelect from "../components/ecommerce/Filter/ShowSelect";
@@ -15,7 +15,7 @@ import Layout from './../components/layout/Layout';
 const Products = ({ products, productFilters, fetchProduct }) => {
   const [searchparams] = useSearchParams();
   console.log(searchparams.get('search'));
-  const searchTerm = searchparams.get('search');
+  // const searchTerm = searchparams.get('search');
 
   //showLimit = 12,
   //showPagination = 4;

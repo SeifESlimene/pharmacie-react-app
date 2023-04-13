@@ -25,6 +25,7 @@ import Register from './pages/page-register';
 import About from './pages/page-about';
 import Product from './pages/products';
 import Products from './pages/products';
+import Test from './pages/test';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -42,6 +43,7 @@ const router = createBrowserRouter(
       <Route path='/page-about' element={<About />} />
       <Route path='/products/:slug' element={<Product />} />
       <Route path='/products' element={<Products />} />
+      <Route path='/testdb' element={<Test />} />
     </>
   )
 );

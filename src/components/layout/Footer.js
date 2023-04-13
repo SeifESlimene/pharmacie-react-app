@@ -1,25 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import pinterestIcon from '../../imgs/theme/icons/icon-pinterest-white.svg';
-import instagramIcon from '../../imgs/theme/icons/icon-instagram-white.svg';
-import twitterIcon from '../../imgs/theme/icons/icon-twitter-white.svg';
-import youtubeIcon from '../../imgs/theme/icons/icon-youtube-white.svg';
-import facebookIcon from '../../imgs/theme/icons/icon-facebook-white.svg';
-import phoneCallIcon from '../../imgs/theme/icons/phone-call.svg';
 import paymentMethodIcon from '../../imgs/theme/payment-method.png';
-import googlePlayIcon from '../../imgs/theme/google-play.jpg';
-import appStoreIcon from '../../imgs/theme/app-store.jpg';
-import clockIcon from '../../imgs/theme/icons/icon-clock.svg';
 import emailIcon from '../../imgs/theme/icons/icon-email-2.svg';
-import contactIcon from '../../imgs/theme/icons/icon-contact.svg';
-import locationIcon from '../../imgs/theme/icons/icon-location.svg';
 import logo from '../../imgs/theme/logo.svg';
-import icon6 from '../../imgs/theme/icons/icon-6.svg';
-import icon5 from '../../imgs/theme/icons/icon-5.svg';
-import icon4 from '../../imgs/theme/icons/icon-4.svg';
-import icon3 from '../../imgs/theme/icons/icon-3.svg';
-import icon2 from '../../imgs/theme/icons/icon-2.svg';
-import icon1 from '../../imgs/theme/icons/icon-1.svg';
 
 const Footer = () => {
   return (
