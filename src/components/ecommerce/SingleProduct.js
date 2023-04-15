@@ -6,13 +6,22 @@ import { addToCart } from '../../features/cart/cartSlice';
 import { addToWishList } from '../../features/wishList/wishListSlice';
 import { addToCompare } from '../../features/compare/compareSlice';
 import { openQuickView } from '../../features/quickView/quickViewSlice';
+import {
+  useAddProductsToCartMutation,
+  useGetCartProductQuery,
+} from '../../api/cartApi';
 
 const SingleProduct = ({ product }) => {
   const dispatch = useDispatch();
+  const [postProductsToCart, { isLoading, isSuccess }] =
+    useAddProductsToCartMutation();
+  const { data } = useGetCartProductQuery();
 
   const handleCart = (product) => {
-    dispatch(addToCart(product));
-    toast('Product added to Cart !');
+    postProductsToCart(product);
+    if (isSuccess) {
+      toast('Product added to Cart !');
+    }
   };
 
   const handleCompare = (product) => {
@@ -29,9 +38,9 @@ const SingleProduct = ({ product }) => {
       <div className='product-cart-wrap mb-30'>
         <div className='product-img-action-wrap'>
           <div className='product-img product-img-zoom'>
-            <Link to={`/products/${product.slug}`}>
-              <img className='default-img' src={product.images[0].img} alt='' />
-              <img className='hover-img' src={product.images[1].img} alt='' />
+            <Link to={`/products/${product.reference}`}>
+              <img className='default-img' src={product.image} alt='' />
+              <img className='hover-img' src={product.image} alt='' />
             </Link>
           </div>
           <div className='product-action-1'>
@@ -59,7 +68,7 @@ const SingleProduct = ({ product }) => {
             </a>
           </div>
 
-          <div className='product-badges product-badges-position product-badges-mrg'>
+          {/* <div className='product-badges product-badges-position product-badges-mrg'>
             {product.trending && <span className='hot'>Hot</span>}
             {product.created && <span className='new'>New</span>}
             {product.totalSell > 100 && <span className='best'>Best Sell</span>}
@@ -67,17 +76,17 @@ const SingleProduct = ({ product }) => {
             {product.discount.percentage >= 5 && (
               <span className='hot'>{product.discount.percentage}%</span>
             )}
-          </div>
+          </div> */}
         </div>
         <div className='product-content-wrap'>
-          <div className='product-category'>
+          {/* <div className='product-category'>
             <Link to='/products'>{product.brand}</Link>
-          </div>
+          </div> */}
           <h2>
-            <Link to={`/products/${product.slug}`}>{product.title}</Link>
+            <Link to={`/products/${product.reference}`}>{product.name}</Link>
           </h2>
 
-          <div className='product-rate-cover'>
+          {/* <div className='product-rate-cover'>
             <div className='product-rate d-inline-block'>
               <div className='product-rating' style={{ width: '90%' }}></div>
             </div>
@@ -85,7 +94,7 @@ const SingleProduct = ({ product }) => {
               {' '}
               ({product.ratingScore})
             </span>
-          </div>
+          </div> */}
 
           <div>
             <span className='font-small text-muted'>
@@ -95,10 +104,10 @@ const SingleProduct = ({ product }) => {
 
           <div className='product-card-bottom'>
             <div className='product-price'>
-              <span>${product.price} </span>
-              <span className='old-price'>
+              <span>{product.price}DT</span>
+              {/* <span className='old-price'>
                 {product.oldPrice && `$ ${product.oldPrice}`}
-              </span>
+              </span> */}
             </div>
             <div className='add-cart'>
               <a className='add' onClick={(e) => handleCart(product)}>

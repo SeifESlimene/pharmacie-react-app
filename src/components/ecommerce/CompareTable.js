@@ -25,12 +25,12 @@ const CompareTable = ({ data, features, deleteFromCompare }) => {
             {data.map((product) =>
               feature === "preview" ? (
                 <td className="row_img">
-                  <img src={product.images[0].img} alt=''/>
+                  <img src={product.image} alt=''/>
                 </td>
               ) : feature === "name" ? (
                 <td className="product_name">
                   <h5>
-                    <a href="#">{product.title}</a>
+                    <a href="#">{product.name}</a>
                   </h5>
                 </td>
               ) : feature === "price" ? (
@@ -58,7 +58,7 @@ const CompareTable = ({ data, features, deleteFromCompare }) => {
                 </td>
               ) : feature === "description" ? (
                 <td className="row_text font-xs">
-                  <p>{product.desc}</p>
+                  <p>{product.description}</p>
                 </td>
               ) : feature === "stock" ? (
                 <td className="row_stock">

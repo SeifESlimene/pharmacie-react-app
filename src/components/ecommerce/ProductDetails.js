@@ -57,7 +57,7 @@ const ProductDetails = ({ product, quickView }) => {
                   <div className='col-md-6 col-sm-12 col-xs-12'>
                     <div className='detail-info  pr-30 pl-30'>
                       <span className='stock-status out-stock'> Sale Off </span>
-                      <h2 className='title-detail'>{product.title}</h2>
+                      <h2 className='title-detail'>{product.name}</h2>
                       <div className='product-detail-rating'>
                         <div className='product-rate-cover text-end'>
                           <div className='product-rate d-inline-block'>
@@ -79,7 +79,7 @@ const ProductDetails = ({ product, quickView }) => {
                           </span>
                           <span>
                             <span className='save-price font-md color3 ml-15'>
-                              {product.discount.percentage}% Off
+                              {/* {product.discount.percentage}% Off */}
                             </span>
                             <span className='old-price font-md ml-15'>
                               {product.oldPrice
@@ -96,13 +96,13 @@ const ProductDetails = ({ product, quickView }) => {
                       <div className='attr-detail attr-color mb-15'>
                         <strong className='mr-10'>Color</strong>
                         <ul className='list-filter color-filter'>
-                          {product.variations.map((clr, i) => (
+                          {/* {product.variations.map((clr, i) => (
                             <li key={i}>
                               <a href='#'>
                                 <span className={`product-color-${clr}`}></span>
                               </a>
                             </li>
-                          ))}
+                          ))} */}
                         </ul>
                       </div>
                       <div className='attr-detail attr-size'>

@@ -1,12 +1,172 @@
 {
-  "posts": [
-    { "id": 1, "title": "json-server", "author": "typicode" }
-  ],
   "product": [
-    { "id": 1, "reference": "pack-proteine-clere-3x120ml", "price": "49.000", "name" :"PACK PROTEINE CLERE 3 X 120ML", "description": "Le pack Proteine Clére est composé de :  Shampooing clarifiant 120ml Dose Protéine 120ml  Fixateur 120ml", "image": "https://www.parapharm.tn/products/5497-pack-proteine-clere-3x120ml.png", "tva": "10", "subCategoryId": "5", "productDiscountId": "2" }
+    {
+      "id": 1,
+      "reference": "Pack-proteine-clere-3x120ml",
+      "price": "49.000",
+      "name": "PACK PROTEINE CLERE 3 X 120ML",
+      "description": "Le pack Proteine Clére est composé de :  Shampooing clarifiant 120ml Dose Protéine 120ml  Fixateur 120ml",
+      "image": "https://www.parapharm.tn/products/5497-pack-proteine-clere-3x120ml.png",
+      "vat": "10",
+      "subCategoryId": "5",
+      "productDiscountId": "2"
+    }
   ],
-  "comments": [
-    { "id": 1, "body": "some comment", "postId": 1 }
+  "productDiscount": [
+    {
+      "id": 2,
+      "discount": "50%",
+      "description": "Remise "
+    }
   ],
-  "profile": { "name": "typicode" }
+  "SubCategory": [
+    {
+      "id": 5,
+      "name": "Proteine",
+      "attribute": 12,
+      "categoryId": 4
+    }
+  ],
+  "category": [
+    {
+      "id": 4,
+      "name": "Cheveux"
+    }
+  ],
+  "cart": [
+    {
+      "id": 1,
+      "listproduct": {
+        "id": 1,
+        "reference": "Pack-proteine-clere-3x120ml",
+        "price": "49.000",
+        "name": "PACK PROTEINE CLERE 3 X 120ML",
+        "description": "Le pack Proteine Clére est composé de :  Shampooing clarifiant 120ml Dose Protéine 120ml  Fixateur 120ml",
+        "image": "https://www.parapharm.tn/products/5497-pack-proteine-clere-3x120ml.png",
+        "vat": "10",
+        "subCategoryId": "5",
+        "productDiscountId": "2"
+      },
+      "cartDiscountId": 1,
+      "clientId": 1,
+      "quantity": 1
+    }
+  ],
+  "cartDiscount": [
+    {
+      "id": 1,
+      "discountCode": "Deal",
+      "startDate": "26/02/2023",
+      "endDate": "23/02/2024",
+      "discount": 50
+    }
+  ],
+  "cart_Product": [
+    {
+      "cartId": 1,
+      "productId": 1,
+      "quantity": 1
+    }
+  ],
+  "client": [
+    {
+      "id": 1
+    }
+  ],
+  "order": [
+    {
+      "id": 1,
+      "orderDate": "26/04/2023",
+      "orderStatusId": 1,
+      "clientId": 1
+    }
+  ],
+  "orderStatus": [
+    {
+      "id": 1,
+      "status": "Confirmed",
+      "description": "Order confirmed",
+      "lastUpdate": "27/04/2023"
+    }
+  ],
+  "order_Product": [
+    {
+      "orderId": 1,
+      "productId": 1,
+      "quantity": 1
+    }
+  ],
+  "bill": [
+    {
+      "id": 1,
+      "total": 82000,
+      "orderID": 1
+    }
+  ],
+  "user": [
+    {
+      "id": 1,
+      "firstName": "Houseif",
+      "lastName": "Hadsli",
+      "email": "houseif@gmail.com",
+      "password": 1234,
+      "phoneNumber": 24768211,
+      "creationDate": "13/04/2023",
+      "attribute": 13,
+      "addressId": 1,
+      "profileId": 1
+    }
+  ],
+  "profile": [
+    {
+      "id": 1,
+      "type": "admin",
+      "isPhysicalPerson": true
+    }
+  ],
+  "profile_Feature": [
+    {
+      "profileId": 1,
+      "featureId": 1
+    }
+  ],
+  "feature": [
+    {
+      "id": 1,
+      "name": "View orders",
+      "isActive": true,
+      "creationDate": "23/04/2023"
+    }
+  ],
+  "address": [
+    {
+      "id": 1,
+      "zidCode": 5070,
+      "roadNumber": 20,
+      "city": "Ksar Hellal"
+    }
+  ],
+  "company": [
+    {
+      "id": 1,
+      "staus": "",
+      "companyCode": "3cf1235",
+      "groupeId": 1,
+      "addressId": 1
+    }
+  ],
+  "groupe": [
+    {
+      "id": 1,
+      "name": "pharmacy"
+    }
+  ],
+  "companyType": [
+    {
+      "id": 1,
+      "label": "Houssem's pharmacy",
+      "Description": "Sale of medication and parapharmaceutical products",
+      "companyId": 1
+    }
+  ]
 }

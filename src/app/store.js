@@ -6,16 +6,18 @@ import wishListReducer from '../features/wishList/wishListSlice';
 import compareReducer from '../features/compare/compareSlice';
 import quickViewReducer from '../features/quickView/quickViewSlice';
 import { productApi } from '../api/productApi';
+import { cartApi } from '../api/cartApi';
 
 export const store = configureStore({
   reducer: {
     [productApi.reducerPath]: productApi.reducer,
+    [cartApi.reducerPath]: cartApi.reducer,
     counter: counterReducer,
     cart: cartReducer,
     wishList: wishListReducer,
     compare: compareReducer,
-    quickView: quickViewReducer
-   // localStorage: localStorageReducer
+    quickView: quickViewReducer,
+    // localStorage: localStorageReducer
   },
-  middleware: (gDM) => gDM().concat(productApi.middleware)
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(productApi.middleware, cartApi.middleware),
 });

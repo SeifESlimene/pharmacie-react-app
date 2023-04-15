@@ -15,7 +15,7 @@ export const compareSlice = createSlice({
     addToCompare: (state, action) => {
       index = findProductIndexById(state, action.payload.id);
       if (index === -1) {
-        action.payload.quantity = 1;
+        //action.payload.quantity = 1;
         storage.set("dokani_wishlist", action.payload);
         state.push(action.payload);
       }

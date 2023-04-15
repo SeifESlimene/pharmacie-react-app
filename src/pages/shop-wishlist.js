@@ -51,7 +51,7 @@ const Wishlist = () => {
                           <tr className='pt-30' key={i}>
                             <td className='image product-thumbnail pt-40'>
                               <img
-                                src={product.images[0].img}
+                                src={product.image}
                                 alt=''
                                 className='img-fluid'
                               />
@@ -59,7 +59,7 @@ const Wishlist = () => {
 
                             <td className='product-des product-name'>
                               <h6 className='product-name  mb-10'>
-                                <a>{product.title}</a>
+                                <a>{product.name}</a>
                               </h6>
                               <div className='product-rate-cover'>
                                 <div className='product-rate d-inline-block'>
