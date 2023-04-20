@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../features/cart/cartSlice';
@@ -9,16 +9,30 @@ import { openQuickView } from '../../features/quickView/quickViewSlice';
 import {
   useAddProductsToCartMutation,
   useGetCartProductQuery,
+  useAddCartProductMutation
 } from '../../api/cartApi';
 
 const SingleProduct = ({ product }) => {
   const dispatch = useDispatch();
   const [postProductsToCart, { isLoading, isSuccess }] =
     useAddProductsToCartMutation();
-  const { data } = useGetCartProductQuery();
+    const [postCartProducts] =
+    useAddCartProductMutation();
+  const { data: cartProducts } = useGetCartProductQuery(product.id);
+
+  useEffect(() => {
+    if (cartProducts) {
+      const filteredQuantity = cartProducts.cart_Product.map((cartProduct) => {
+        console.log({ quantity: cartProduct.quantity });
+      });
+    }
+  }, [cartProducts]);
 
   const handleCart = (product) => {
-    postProductsToCart(product);
+    // debugger
+   
+    const card =postProductsToCart({ product});
+    console.log(card)
     if (isSuccess) {
       toast('Product added to Cart !');
     }

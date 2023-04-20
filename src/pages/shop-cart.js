@@ -2,13 +2,18 @@
 import Layout from '../components/layout/Layout';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  selectCartProducts,
-  deleteFromCart,
+  //   selectCartProducts,
+  //   deleteFromCart,
   increaseQuantity,
   decreaseQuantity,
-  clearCart,
+  //   clearCart,
 } from '../features/cart/cartSlice';
 import { Link } from 'react-router-dom';
+import {
+  useGetCartQuery,
+  useDeleteFromCartMutation,
+  useClearCartMutation,
+} from '../api/cartApi';
 
 // import {
 //     clearCart,
@@ -30,17 +35,29 @@ import { Link } from 'react-router-dom';
 //     clearCart,
 // }) => {
 const Cart = () => {
+  const { data: cartProducts = [] } = useGetCartQuery();
+  const [deleteFromCart] = useDeleteFromCartMutation();
+  const [clearCart] = useClearCartMutation();
+
   const price = () => {
     let price = 0;
-    cartProducts.forEach((item) => (price += item.price * item.quantity));
+    cartProducts.forEach(
+      (item) => (price += item.listproduct.product.price * item.quantity)
+    );
 
     return price;
   };
+  const handleDeleteFromCart = (itemId) => {
+    deleteFromCart(itemId);
+  };
+  const handleClearCart = () => {
+    clearCart();
+  };
 
-  const cartProducts = useSelector(selectCartProducts);
+  //const cartProducts = useSelector(selectCartProducts);
 
   const dispatch = useDispatch();
-
+  console.log(cartProducts);
   const cartProductsCount = cartProducts.length;
 
   return (
@@ -62,7 +79,7 @@ const Cart = () => {
                     <a
                       href='#'
                       className='text-muted'
-                      onClick={(e) => dispatch(clearCart())}
+                      onClick={(e) => handleClearCart()}
                     >
                       <i className='fi-rs-trash mr-5'></i>
                       Clear Cart
@@ -100,12 +117,14 @@ const Cart = () => {
                       {cartProducts.map((item, i) => (
                         <tr key={i}>
                           <td className='image product-thumbnail'>
-                            <img src={item.images[0].img} alt='' />
+                            <img src={item.listproduct.product.image} alt='' />
                           </td>
 
                           <td className='product-des product-name'>
                             <h6 className='product-name'>
-                              <Link to='/products'>{item.title}</Link>
+                              <Link to='/products'>
+                                {item.listproduct.product.name}
+                              </Link>
                             </h6>
                             <div className='product-rate-cover'>
                               <div className='product-rate d-inline-block'>
@@ -123,7 +142,9 @@ const Cart = () => {
                             </div>
                           </td>
                           <td className='price' data-title='Price'>
-                            <h4 className='text-brand'>${item.price}</h4>
+                            <h4 className='text-brand'>
+                              {item.listproduct.product.price}DT
+                            </h4>
                           </td>
                           <td
                             className='text-center detail-info'
@@ -155,12 +176,12 @@ const Cart = () => {
                           </td>
                           <td className='text-right' data-title='Cart'>
                             <h4 className='text-body'>
-                              ${item.quantity * item.price}
+                              ${item.quantity * item.listproduct.product.price}
                             </h4>
                           </td>
                           <td className='action' data-title='Remove'>
                             <a
-                              onClick={(e) => dispatch(deleteFromCart(item.id))}
+                              onClick={(e) => handleDeleteFromCart(item)}
                               className='text-muted'
                             >
                               <i className='fi-rs-trash'></i>
@@ -195,7 +216,7 @@ const Cart = () => {
                               <td className='cart_total_amount'>
                                 <strong>
                                   <span className='font-xl fw-900 text-brand'>
-                                    ${price()}
+                                    {price()}DT
                                   </span>
                                 </strong>
                               </td>
