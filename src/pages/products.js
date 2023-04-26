@@ -14,7 +14,6 @@ import Layout from './../components/layout/Layout';
 
 const Products = ({ products, productFilters, fetchProduct }) => {
   const [searchparams] = useSearchParams();
-  console.log(searchparams.get('search'));
   // const searchTerm = searchparams.get('search');
 
   //showLimit = 12,

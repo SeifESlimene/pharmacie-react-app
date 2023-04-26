@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from "react";
-import Search from "../ecommerce/Search";
-import { Link } from "react-router-dom";
-import compareIcon from "../../imgs/theme/icons/icon-compare.svg";
-import icon4 from "../../imgs/theme/icons/icon-4.svg";
-import icon3 from "../../imgs/theme/icons/icon-3.svg";
-import icon2 from "../../imgs/theme/icons/icon-2.svg";
-import icon1 from "../../imgs/theme/icons/icon-1.svg";
-import userIcon from "../../imgs/theme/icons/icon-user.svg";
-import cartIcon from "../../imgs/theme/icons/icon-cart.svg";
-import heartIcon from "../../imgs/theme/icons/icon-heart.svg";
-import CategoryProduct2 from "../ecommerce/Filter/CategoryProduct2";
-import CategoryProduct3 from "../ecommerce/Filter/CategoryProduct3";
-import { useSelector } from "react-redux";
-import { selectCartProductsCount } from "../../features/cart/cartSlice";
-import { selectWishListProductsCount } from "../../features/wishList/wishListSlice";
-import { selectCompareProductsCount } from "../../features/compare/compareSlice";
+import React, { useEffect, useState } from 'react';
+import Search from '../ecommerce/Search';
+import { Link } from 'react-router-dom';
+import compareIcon from '../../imgs/theme/icons/icon-compare.svg';
+import icon4 from '../../imgs/theme/icons/icon-4.svg';
+import icon3 from '../../imgs/theme/icons/icon-3.svg';
+import icon2 from '../../imgs/theme/icons/icon-2.svg';
+import icon1 from '../../imgs/theme/icons/icon-1.svg';
+import userIcon from '../../imgs/theme/icons/icon-user.svg';
+import cartIcon from '../../imgs/theme/icons/icon-cart.svg';
+import heartIcon from '../../imgs/theme/icons/icon-heart.svg';
+import CategoryProduct2 from '../ecommerce/Filter/CategoryProduct2';
+import CategoryProduct3 from '../ecommerce/Filter/CategoryProduct3';
+import { useSelector } from 'react-redux';
+import { selectCartProductsCount } from '../../features/cart/cartSlice';
+import { selectWishListProductsCount } from '../../features/wishList/wishListSlice';
+import { selectCompareProductsCount } from '../../features/compare/compareSlice';
 import {
   useGetCategorysQuery,
   useGetSubCategorysQuery,
-} from "../../api/categoryApi";
+} from '../../api/categoryApi';
 
 const Header = ({ toggleClick }) => {
   const [isToggled, setToggled] = useState(false);
@@ -30,7 +30,7 @@ const Header = ({ toggleClick }) => {
   const { data: Subcategorys = [] } = useGetSubCategorysQuery();
 
   useEffect(() => {
-    document.addEventListener("scroll", () => {
+    document.addEventListener('scroll', () => {
       const scrollCheck = window.scrollY >= 100;
       if (scrollCheck !== scroll) {
         setScroll(scrollCheck);
@@ -42,27 +42,27 @@ const Header = ({ toggleClick }) => {
 
   return (
     <>
-      <header className="header-area header-style-1 header-height-2">
-        <div className="mobile-promotion">
+      <header className='header-area header-style-1 header-height-2'>
+        <div className='mobile-promotion'>
           <span>
-            Grand opening, <strong>up to 15%</strong> off all items. Only{" "}
+            Grand opening, <strong>up to 15%</strong> off all items. Only{' '}
             <strong>3 days</strong> left
           </span>
         </div>
-        <div className="header-top header-top-ptb-1 d-none d-lg-block">
-          <div className="container">
-            <div className="row align-items-center">
-              <div className="col-xl-3 col-lg-4">
-                <div className="header-info">
+        <div className='header-top header-top-ptb-1 d-none d-lg-block'>
+          <div className='container'>
+            <div className='row align-items-center'>
+              <div className='col-xl-3 col-lg-4'>
+                <div className='header-info'>
                   <ul>
                     <li>
-                      <Link to="/page-about">A propos</Link>
+                      <Link to='/page-about'>A propos</Link>
                     </li>
                     <li>
-                      <Link to="/page-account">Mon Compte</Link>
+                      <Link to='/page-account'>Mon Compte</Link>
                     </li>
                     <li>
-                      <Link to="/shop-wishlist">Favories</Link>
+                      <Link to='/shop-wishlist'>Favories</Link>
                     </li>
                   </ul>
                 </div>
@@ -70,20 +70,20 @@ const Header = ({ toggleClick }) => {
             </div>
           </div>
         </div>
-        <div className="header-middle header-middle-ptb-1 d-none d-lg-block">
-          <div className="container">
-            <div className="header-wrap">
-              <div className="logo logo-width-1">
-                <Link to="/">
+        <div className='header-middle header-middle-ptb-1 d-none d-lg-block'>
+          <div className='container'>
+            <div className='header-wrap'>
+              <div className='logo logo-width-1'>
+                <Link to='/'>
                   {/* <img src='../../imgs/theme/logo.svg' alt='logo' /> */}
                 </Link>
               </div>
-              <div className="header-right">
-                <div className="search-style-2">
+              <div className='header-right'>
+                <div className='search-style-2'>
                   <Search />
                 </div>
-                <div className="header-action-right">
-                  <div className="header-action-2">
+                <div className='header-action-right'>
+                  <div className='header-action-2'>
                     {/* <div className='search-location'>
                       <form action='#'>
                         <select className='select-active'>
@@ -104,84 +104,84 @@ const Header = ({ toggleClick }) => {
                         </select>
                       </form>
                     </div> */}
-                    <div className="header-action-icon-2">
-                      <Link to="/shop-compare">
+                    <div className='header-action-icon-2'>
+                      <Link to='/shop-compare'>
                         <img
-                          className="svgInject"
-                          alt="Evara"
+                          className='svgInject'
+                          alt='Evara'
                           src={compareIcon}
                         />
-                        <span className="pro-count blue">
+                        <span className='pro-count blue'>
                           {compartProductsCount}
                         </span>
                       </Link>
-                      <Link to="/shop-compare">
-                        <span className="lable ml-0">Comparer</span>
+                      <Link to='/shop-compare'>
+                        <span className='lable ml-0'>Comparer</span>
                       </Link>
                     </div>
-                    <div className="header-action-icon-2">
-                      <Link to="/shop-wishlist">
+                    <div className='header-action-icon-2'>
+                      <Link to='/shop-wishlist'>
                         <img
-                          className="svgInject"
-                          alt="Evara"
+                          className='svgInject'
+                          alt='Evara'
                           src={heartIcon}
                         />
-                        <span className="pro-count blue">
+                        <span className='pro-count blue'>
                           {wishlistProductsCount}
                         </span>
                       </Link>
-                      <Link to="/shop-wishlist">
-                        <span className="lable">Favories</span>
+                      <Link to='/shop-wishlist'>
+                        <span className='lable'>Favories</span>
                       </Link>
                     </div>
-                    <div className="header-action-icon-2">
-                      <Link className="mini-cart-icon" to="/shop-cart">
-                        <img alt="Evara" src={cartIcon} />
-                        <span className="pro-count blue">
+                    <div className='header-action-icon-2'>
+                      <Link className='mini-cart-icon' to='/shop-cart'>
+                        <img alt='Evara' src={cartIcon} />
+                        <span className='pro-count blue'>
                           {cartProductsCount}
                         </span>
                       </Link>
-                      <Link to="/shop-cart">
-                        <span className="lable">Panier</span>
+                      <Link to='/shop-cart'>
+                        <span className='lable'>Panier</span>
                       </Link>
                     </div>
 
-                    <div className="header-action-icon-2">
-                      <Link to="/page-account">
-                        <img className="svgInject" alt="Nest" src={userIcon} />
+                    <div className='header-action-icon-2'>
+                      <Link to='/page-account'>
+                        <img className='svgInject' alt='Nest' src={userIcon} />
                       </Link>
-                      <Link to="/page-account">
-                        <span className="lable ml-0">Compte</span>
+                      <Link to='/page-account'>
+                        <span className='lable ml-0'>Compte</span>
                       </Link>
-                      <div className="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
+                      <div className='cart-dropdown-wrap cart-dropdown-hm2 account-dropdown'>
                         <ul>
                           <li>
-                            <Link to="/page-account">
-                              <i className="fi fi-rs-user mr-10"></i>
+                            <Link to='/page-account'>
+                              <i className='fi fi-rs-user mr-10'></i>
                               Mon Compte
                             </Link>
                           </li>
                           <li>
-                            <Link to="/page-account">
-                              <i className="fi fi-rs-label mr-10"></i>
+                            <Link to='/page-account'>
+                              <i className='fi fi-rs-label mr-10'></i>
                               Mon Coupon
                             </Link>
                           </li>
                           <li>
-                            <Link to="/shop-wishlist">
-                              <i className="fi fi-rs-heart mr-10"></i>
+                            <Link to='/shop-wishlist'>
+                              <i className='fi fi-rs-heart mr-10'></i>
                               Mon liste d'envie
                             </Link>
                           </li>
                           <li>
-                            <Link to="/page-account">
-                              <i className="fi fi-rs-settings-sliders mr-10"></i>
+                            <Link to='/page-account'>
+                              <i className='fi fi-rs-settings-sliders mr-10'></i>
                               Paramètres
                             </Link>
                           </li>
                           <li>
-                            <Link to="/page-login">
-                              <i className="fi fi-rs-sign-out mr-10"></i>
+                            <Link to='/page-login'>
+                              <i className='fi fi-rs-sign-out mr-10'></i>
                               Déconnecter
                             </Link>
                           </li>
@@ -197,98 +197,98 @@ const Header = ({ toggleClick }) => {
         <div
           className={
             scroll
-              ? "header-bottom header-bottom-bg-color sticky-bar stick"
-              : "header-bottom header-bottom-bg-color sticky-bar"
+              ? 'header-bottom header-bottom-bg-color sticky-bar stick'
+              : 'header-bottom header-bottom-bg-color sticky-bar'
           }
         >
-          <div className="container">
-            <div className="header-wrap header-space-between position-relative">
-              <div className="logo logo-width-1 d-block d-lg-none">
+          <div className='container'>
+            <div className='header-wrap header-space-between position-relative'>
+              <div className='logo logo-width-1 d-block d-lg-none'>
                 {/* <Link to='/'>
                   <img src='../../imgs/theme/logo.svg' alt='logo' />
                 </Link> */}
               </div>
-              <div className="header-nav d-none d-lg-flex">
-                <div className="main-categori-wrap d-none d-lg-block">
+              <div className='header-nav d-none d-lg-flex'>
+                <div className='main-categori-wrap d-none d-lg-block'>
                   {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                   <a
-                    className="categories-button-active"
+                    className='categories-button-active'
                     onClick={handleToggle}
                   >
-                    <span className="fi-rs-apps"></span>
-                    <span className="et">Naviguer</span> Tous les categories
-                    <i className="fi-rs-angle-down"></i>
+                    <span className='fi-rs-apps'></span>
+                    <span className='et'>Naviguer</span> Tous les categories
+                    <i className='fi-rs-angle-down'></i>
                   </a>
 
                   <div
                     className={
                       isToggled
-                        ? "categories-dropdown-wrap categories-dropdown-active-large font-heading open"
-                        : "categories-dropdown-wrap categories-dropdown-active-large font-heading"
+                        ? 'categories-dropdown-wrap categories-dropdown-active-large font-heading open'
+                        : 'categories-dropdown-wrap categories-dropdown-active-large font-heading'
                     }
                   >
-                    <div className="d-flex categori-dropdown-inner">
+                    <div className='d-flex categori-dropdown-inner'>
                       <CategoryProduct2 />
                       <CategoryProduct3 />
                     </div>
                     <div
-                      className="more_slide_open"
-                      style={{ display: "none" }}
+                      className='more_slide_open'
+                      style={{ display: 'none' }}
                     >
-                      <div className="d-flex categori-dropdown-inner">
+                      <div className='d-flex categori-dropdown-inner'>
                         <ul>
                           <li>
-                            <Link to="/products">
-                              {" "}
-                              <img src={icon1} alt="" />
+                            <Link to='/products'>
+                              {' '}
+                              <img src={icon1} alt='' />
                               Milks and Dairies
                             </Link>
                           </li>
                           <li>
-                            <Link to="/products">
-                              {" "}
-                              <img src={icon2} alt="" />
+                            <Link to='/products'>
+                              {' '}
+                              <img src={icon2} alt='' />
                               Clothing & beauty
                             </Link>
                           </li>
                         </ul>
-                        <ul className="end">
+                        <ul className='end'>
                           <li>
-                            <Link to="/products">
-                              {" "}
-                              <img src={icon3} alt="" />
+                            <Link to='/products'>
+                              {' '}
+                              <img src={icon3} alt='' />
                               Wines & Drinks
                             </Link>
                           </li>
                           <li>
-                            <Link to="/products">
-                              {" "}
-                              <img src={icon4} alt="" />
+                            <Link to='/products'>
+                              {' '}
+                              <img src={icon4} alt='' />
                               Fresh Seafood
                             </Link>
                           </li>
                         </ul>
                       </div>
                     </div>
-                    <div className="more_categories">
-                      <span className="icon"></span>{" "}
-                      <span className="heading-sm-1">Voir Plus...</span>
+                    <div className='more_categories'>
+                      <span className='icon'></span>{' '}
+                      <span className='heading-sm-1'>Voir Plus...</span>
                     </div>
                   </div>
                 </div>
-                <div className="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block  font-heading">
+                <div className='main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block  font-heading'>
                   <nav>
                     <ul>
-                      {categorys.map((res, index) => (
-                        <li >
-                          <Link className="active" to="/">
+                      {categorys.map((res) => (
+                        <li key={res.id}>
+                          <Link className='active' to='/'>
                             {res.name}
-                            <i className="fi-rs-angle-down"></i>
+                            <i className='fi-rs-angle-down'></i>
                           </Link>
-                          <ul className="sub-menu">
-                            {Subcategorys.map((result) => (
-                              <li>
-                                <Link to="/page-category">{result.name}</Link>
+                          <ul className='sub-menu'>
+                            {Subcategorys.filter(sub => sub.categoryId === res.id).map(result => (
+                              <li key={result.id}>
+                                <Link to={`/page-category/${result.id}`}>{result.name}</Link>
                               </li>
                             ))}
                           </ul>
@@ -299,14 +299,14 @@ const Header = ({ toggleClick }) => {
                 </div>
               </div>
 
-              <div className="header-action-icon-2 d-block d-lg-none">
+              <div className='header-action-icon-2 d-block d-lg-none'>
                 <div
-                  className="burger-icon burger-icon-white"
+                  className='burger-icon burger-icon-white'
                   onClick={toggleClick}
                 >
-                  <span className="burger-icon-top"></span>
-                  <span className="burger-icon-mid"></span>
-                  <span className="burger-icon-bottom"></span>
+                  <span className='burger-icon-top'></span>
+                  <span className='burger-icon-mid'></span>
+                  <span className='burger-icon-bottom'></span>
                 </div>
               </div>
             </div>

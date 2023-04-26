@@ -23,7 +23,6 @@ const SingleProduct = ({ product }) => {
   useEffect(() => {
     if (cartProducts) {
       const filteredQuantity = cartProducts.cart_Product.map((cartProduct) => {
-        console.log({ quantity: cartProduct.quantity });
       });
     }
   }, [cartProducts]);
@@ -32,7 +31,6 @@ const SingleProduct = ({ product }) => {
     // debugger
    
     const card =postProductsToCart({ product});
-    console.log(card)
     if (isSuccess) {
       toast('Product added to Cart !');
     }

@@ -3,7 +3,7 @@ import cartSlice, { addToCart } from '../features/cart/cartSlice';
 
 export const cartApi = createApi({
   reducerPath: 'cartApi',
-  baseQuery: fetchBaseQuery({ baseUrl: ' http://localhost:3004' }),
+  baseQuery: fetchBaseQuery({ baseUrl: ' http://localhost:3002' }),
   endpoints: (builder) => ({
     addProductsToCart: builder.mutation({
       query: (data) => ({
@@ -48,7 +48,7 @@ export const cartApi = createApi({
     }),
 
     getCartProduct: builder.query({
-      query: (id) => { console.log({ id }); return `/cart/${id}?_embed=cart_Product` },
+      query: (id) => `/cart/${id}?_embed=cart_Product`,
     }),
   
     deleteFromCart: builder.mutation({

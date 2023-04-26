@@ -10,6 +10,17 @@
       "vat": "10",
       "subCategoryId": "5",
       "productDiscountId": "2"
+    },
+    {
+      "id": 2,
+      "reference": "Pack-Vissage-clere-3x120ml",
+      "price": "60.000",
+      "name": "PACK VISAGE CLERE 3 X 120ML",
+      "description": "Le pack Visage Clére est composé de :  Shampooing clarifiant 120ml Dose Protéine 120ml  Fixateur 120ml",
+      "image": "https://www.parashop.tn/image/cache/catalog/produits/nuxe/nuxe-nuxuriance-ultra-box-vos-soins-anti-age-global-orig-550x550.jpg.webp",
+      "vat": "10",
+      "subCategoryId": "4",
+      "productDiscountId": "2"
     }
   ],
   "productDiscount": [
@@ -25,12 +36,22 @@
       "name": "Proteine",
       "attribute": 12,
       "categoryId": 4
+    },
+    {
+      "id": 4,
+      "name": "peau",
+      "attribute": 11,
+      "categoryId": 3
     }
   ],
   "category": [
     {
       "id": 4,
       "name": "Cheveux"
+    },
+    {
+      "id": 3,
+      "name": "Visage"
     }
   ],
   "cart": [

@@ -7,8 +7,6 @@ function Test() {
 
   if (isLoading) return <div>Loading...</div>;
 
-  console.log({ data, isLoading, isFetching, isError })
-
   return (
     <div className={isFetching ? 'posts--disabled' : ''}>
       {/* {data.map((post) => (

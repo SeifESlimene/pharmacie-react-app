@@ -57,7 +57,6 @@ const Cart = () => {
   //const cartProducts = useSelector(selectCartProducts);
 
   const dispatch = useDispatch();
-  console.log(cartProducts);
   const cartProductsCount = cartProducts.length;
 
   return (
