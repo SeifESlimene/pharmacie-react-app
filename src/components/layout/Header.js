@@ -12,23 +12,23 @@ import heartIcon from '../../imgs/theme/icons/icon-heart.svg';
 import CategoryProduct2 from '../ecommerce/Filter/CategoryProduct2';
 import CategoryProduct3 from '../ecommerce/Filter/CategoryProduct3';
 import { useSelector } from 'react-redux';
-import { selectCartProductsCount } from '../../features/cart/cartSlice';
 import { selectWishListProductsCount } from '../../features/wishList/wishListSlice';
 import { selectCompareProductsCount } from '../../features/compare/compareSlice';
 import {
   useGetCategorysQuery,
   useGetSubCategorysQuery,
 } from '../../api/categoryApi';
+import { useGetCartQuery } from '../../api/cartApi';
 
 const Header = ({ toggleClick }) => {
   const [isToggled, setToggled] = useState(false);
   const [scroll, setScroll] = useState(0);
-  const cartProductsCount = useSelector(selectCartProductsCount);
   const wishlistProductsCount = useSelector(selectWishListProductsCount);
   const compartProductsCount = useSelector(selectCompareProductsCount);
   const { data: categorys = [] } = useGetCategorysQuery();
   const { data: Subcategorys = [] } = useGetSubCategorysQuery();
-
+  const { data: cartProducts = [] } = useGetCartQuery();
+  console.log({ cartProducts: cartProducts.length });
   useEffect(() => {
     document.addEventListener('scroll', () => {
       const scrollCheck = window.scrollY >= 100;
@@ -138,7 +138,7 @@ const Header = ({ toggleClick }) => {
                       <Link className='mini-cart-icon' to='/shop-cart'>
                         <img alt='Evara' src={cartIcon} />
                         <span className='pro-count blue'>
-                          {cartProductsCount}
+                          {cartProducts.length}
                         </span>
                       </Link>
                       <Link to='/shop-cart'>
@@ -286,9 +286,13 @@ const Header = ({ toggleClick }) => {
                             <i className='fi-rs-angle-down'></i>
                           </Link>
                           <ul className='sub-menu'>
-                            {Subcategorys.filter(sub => sub.categoryId === res.id).map(result => (
+                            {Subcategorys.filter(
+                              (sub) => sub.categoryId === res.id
+                            ).map((result) => (
                               <li key={result.id}>
-                                <Link to={`/page-category/${result.id}`}>{result.name}</Link>
+                                <Link to={`/page-category/${result.id}`}>
+                                  {result.name}
+                                </Link>
                               </li>
                             ))}
                           </ul>

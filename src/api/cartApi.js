@@ -11,61 +11,62 @@ export const cartApi = createApi({
         method: 'POST',
         body: {
           id: data.id,
-          listproduct: data,
           cartDiscountId: 1,
-          clientId: 1,  
+          clientId: 1,
         },
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
         },
       }),
-      
-      // onSuccess:(data,{dispatch})=> {
-      //   dispatch(cartSlice.actions.addToCart(data));
-      // },
     }),
     getCart: builder.query({
       query: () => `/cart`,
-  
-  }),
+    }),
     addCartProduct: builder.mutation({
       query: (data) => ({
         url: `/cart_Product`,
         method: 'POST',
         body: {
-          id: data.id,
-          quantiye: 1,
-        
+          cartId: 1,
+          productId: data.id,
+          quantity: 1,
         },
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
         },
       }),
-      
-      // onSuccess:(data,{dispatch})=> {
-      //   dispatch(cartSlice.actions.addToCart(data));
-      // },
     }),
 
     getCartProduct: builder.query({
-      query: (id) => `/cart/${id}?_embed=cart_Product`,
+      query: (id) => `/cart_Product`,
     }),
-  
+
     deleteFromCart: builder.mutation({
-    query: ({ id }) => ({
-      url: `/cart/${id}`,
-      method: 'DELETE',
-    
+      query: ({ id }) => ({
+        url: `/cart/${id}`,
+        method: 'DELETE',
+      }),
+    }),
+    deleteFromCart_Product: builder.mutation({
+      query: ({ id }) => ({
+        url: `/cart_product/${id}`,
+        method: 'DELETE',
+      }),
+    }),
+    clearCart: builder.mutation({
+      query: () => ({
+        url: '/cart',
+        method: 'DELETE',
+      }),
     }),
   }),
-  clearCart: builder.mutation({
-    query: () => ({
-      url: '/cart',
-      method: 'DELETE',
-    }),
-  }),
-
-  }),
-
 });
-export const { useAddProductsToCartMutation, useDeleteFromCartMutation, useClearCartMutation, useAddCartProductMutation, useGetCartProductQuery,useGetCartQuery  } = cartApi;
+export const {
+  useAddProductsToCartMutation,
+  useDeleteFromCartMutation,
+  useDeleteFromCart_ProductMutation,
+  useClearCartMutation,
+  useAddCartProductMutation,
+  useGetCartProductQuery,
+  useGetCartQuery,
+} = cartApi;

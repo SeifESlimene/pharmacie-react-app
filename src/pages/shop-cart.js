@@ -12,42 +12,36 @@ import { Link } from 'react-router-dom';
 import {
   useGetCartQuery,
   useDeleteFromCartMutation,
+  useDeleteFromCart_ProductMutation,
   useClearCartMutation,
+  useGetCartProductQuery,
 } from '../api/cartApi';
+import { useGetProductsQuery } from '../api/productApi';
 
-// import {
-//     clearCart,
-//     closeCart,
-//     decreaseQuantity,
-//     deleteFromCart,
-//     increaseQuantity,
-//     openCart
-// } from "../redux/action/cart";
-
-// const Cart = ({
-//     openCart,
-//     cartItems,
-//     activeCart,
-//     closeCart,
-//     increaseQuantity,
-//     decreaseQuantity,
-//     deleteFromCart,
-//     clearCart,
-// }) => {
 const Cart = () => {
   const { data: cartProducts = [] } = useGetCartQuery();
+  const { data: products = [] } = useGetProductsQuery();
+  const { data: Productcart = [] } = useGetCartProductQuery();
   const [deleteFromCart] = useDeleteFromCartMutation();
+  const [deleteFromCart_Product] = useDeleteFromCart_ProductMutation();
   const [clearCart] = useClearCartMutation();
-
   const price = () => {
     let price = 0;
-    cartProducts.forEach(
-      (item) => (price += item.listproduct.product.price * item.quantity)
-    );
+    products.forEach((item) => (price += item.price * quantity));
 
     return price;
   };
+  const quantity = Productcart.map((sub) => sub.quantity)[0];
+  const cartId = cartProducts .map((sub) => sub.id)[0];
+  const productId = Productcart.map((sub) => sub.id===cartId)[0];
+
+  const filteredProducts = products.filter(
+    (product) => product.id === productId
+  );
+  console.log({ filteredProducts });
+
   const handleDeleteFromCart = (itemId) => {
+    deleteFromCart_Product(itemId);
     deleteFromCart(itemId);
   };
   const handleClearCart = () => {
@@ -113,17 +107,15 @@ const Cart = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {cartProducts.map((item, i) => (
+                      {filteredProducts.map((item, i) => (
                         <tr key={i}>
                           <td className='image product-thumbnail'>
-                            <img src={item.listproduct.product.image} alt='' />
+                            <img src={item.image} alt='' />
                           </td>
 
                           <td className='product-des product-name'>
                             <h6 className='product-name'>
-                              <Link to='/products'>
-                                {item.listproduct.product.name}
-                              </Link>
+                              <Link to='/products'>{item.name}</Link>
                             </h6>
                             <div className='product-rate-cover'>
                               <div className='product-rate d-inline-block'>
@@ -141,9 +133,7 @@ const Cart = () => {
                             </div>
                           </td>
                           <td className='price' data-title='Price'>
-                            <h4 className='text-brand'>
-                              {item.listproduct.product.price}DT
-                            </h4>
+                            <h4 className='text-brand'>{item.price}DT</h4>
                           </td>
                           <td
                             className='text-center detail-info'
@@ -160,7 +150,7 @@ const Cart = () => {
                                 >
                                   <i className='fi-rs-angle-small-down'></i>
                                 </a>
-                                <span className='qty-val'>{item.quantity}</span>
+                                <span className='qty-val'>{quantity}</span>
                                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                                 <a
                                   onClick={(e) =>
@@ -175,7 +165,7 @@ const Cart = () => {
                           </td>
                           <td className='text-right' data-title='Cart'>
                             <h4 className='text-body'>
-                              ${item.quantity * item.listproduct.product.price}
+                              ${quantity * item.price}
                             </h4>
                           </td>
                           <td className='action' data-title='Remove'>

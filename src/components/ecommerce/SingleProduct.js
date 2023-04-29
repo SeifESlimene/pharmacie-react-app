@@ -20,17 +20,10 @@ const SingleProduct = ({ product }) => {
     useAddCartProductMutation();
   const { data: cartProducts } = useGetCartProductQuery(product.id);
 
-  useEffect(() => {
-    if (cartProducts) {
-      const filteredQuantity = cartProducts.cart_Product.map((cartProduct) => {
-      });
-    }
-  }, [cartProducts]);
-
   const handleCart = (product) => {
     // debugger
-   
-    const card =postProductsToCart({ product});
+    postCartProducts([product])
+    postProductsToCart({ product});
     if (isSuccess) {
       toast('Product added to Cart !');
     }

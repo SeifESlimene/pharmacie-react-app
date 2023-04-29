@@ -56,76 +56,19 @@
   ],
   "cart": [
     {
-      "listproduct": {
-        "product": {
-          "id": 1,
-          "reference": "Pack-proteine-clere-3x120ml",
-          "price": "49.000",
-          "name": "PACK PROTEINE CLERE 3 X 120ML",
-          "description": "Le pack Proteine Clére est composé de :  Shampooing clarifiant 120ml Dose Protéine 120ml  Fixateur 120ml",
-          "image": "https://www.parapharm.tn/products/5497-pack-proteine-clere-3x120ml.png",
-          "vat": "10",
-          "subCategoryId": "5",
-          "productDiscountId": "2"
-        }
-      },
       "cartDiscountId": 1,
       "clientId": 1,
       "id": 1
     },
     {
-      "listproduct": {
-        "product": {
-          "id": 1,
-          "reference": "Pack-proteine-clere-3x120ml",
-          "price": "49.000",
-          "name": "PACK PROTEINE CLERE 3 X 120ML",
-          "description": "Le pack Proteine Clére est composé de :  Shampooing clarifiant 120ml Dose Protéine 120ml  Fixateur 120ml",
-          "image": "https://www.parapharm.tn/products/5497-pack-proteine-clere-3x120ml.png",
-          "vat": "10",
-          "subCategoryId": "5",
-          "productDiscountId": "2"
-        }
-      },
       "cartDiscountId": 1,
       "clientId": 1,
       "id": 2
     },
     {
-      "listproduct": {
-        "product": {
-          "id": 1,
-          "reference": "Pack-proteine-clere-3x120ml",
-          "price": "49.000",
-          "name": "PACK PROTEINE CLERE 3 X 120ML",
-          "description": "Le pack Proteine Clére est composé de :  Shampooing clarifiant 120ml Dose Protéine 120ml  Fixateur 120ml",
-          "image": "https://www.parapharm.tn/products/5497-pack-proteine-clere-3x120ml.png",
-          "vat": "10",
-          "subCategoryId": "5",
-          "productDiscountId": "2"
-        }
-      },
       "cartDiscountId": 1,
       "clientId": 1,
       "id": 3
-    },
-    {
-      "listproduct": {
-        "product": {
-          "id": 1,
-          "reference": "Pack-proteine-clere-3x120ml",
-          "price": "49.000",
-          "name": "PACK PROTEINE CLERE 3 X 120ML",
-          "description": "Le pack Proteine Clére est composé de :  Shampooing clarifiant 120ml Dose Protéine 120ml  Fixateur 120ml",
-          "image": "https://www.parapharm.tn/products/5497-pack-proteine-clere-3x120ml.png",
-          "vat": "10",
-          "subCategoryId": "5",
-          "productDiscountId": "2"
-        }
-      },
-      "cartDiscountId": 1,
-      "clientId": 1,
-      "id": 5
     }
   ],
   "cartDiscount": [
@@ -140,8 +83,23 @@
   "cart_Product": [
     {
       "cartId": 1,
-      "productId": 1,
-      "quantity": 1
+      "quantity": 1,
+      "id": 1
+    },
+    {
+      "cartId": 1,
+      "quantity": 1,
+      "id": 2
+    },
+    {
+      "cartId": 1,
+      "quantity": 1,
+      "id": 3
+    },
+    {
+      "cartId": 1,
+      "quantity": 1,
+      "id": 4
     }
   ],
   "client": [
