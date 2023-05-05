@@ -23,12 +23,12 @@ export const cartApi = createApi({
       query: () => `/cart`,
     }),
     addCartProduct: builder.mutation({
-      query: (data) => ({
+      query: (id) => ({
         url: `/cart_Product`,
         method: 'POST',
         body: {
           cartId: 1,
-          productId: data.id,
+          productId:id,
           quantity: 1,
         },
         headers: {

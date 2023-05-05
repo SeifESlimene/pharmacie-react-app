@@ -59,16 +59,6 @@
       "cartDiscountId": 1,
       "clientId": 1,
       "id": 1
-    },
-    {
-      "cartDiscountId": 1,
-      "clientId": 1,
-      "id": 2
-    },
-    {
-      "cartDiscountId": 1,
-      "clientId": 1,
-      "id": 3
     }
   ],
   "cartDiscount": [
@@ -83,23 +73,9 @@
   "cart_Product": [
     {
       "cartId": 1,
+      "productId": 2,
       "quantity": 1,
       "id": 1
-    },
-    {
-      "cartId": 1,
-      "quantity": 1,
-      "id": 2
-    },
-    {
-      "cartId": 1,
-      "quantity": 1,
-      "id": 3
-    },
-    {
-      "cartId": 1,
-      "quantity": 1,
-      "id": 4
     }
   ],
   "client": [

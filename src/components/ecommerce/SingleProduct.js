@@ -22,7 +22,7 @@ const SingleProduct = ({ product }) => {
 
   const handleCart = (product) => {
     // debugger
-    postCartProducts([product])
+    postCartProducts(product.id)
     postProductsToCart({ product});
     if (isSuccess) {
       toast('Product added to Cart !');
