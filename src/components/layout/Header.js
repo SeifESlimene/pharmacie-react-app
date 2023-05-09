@@ -28,7 +28,6 @@ const Header = ({ toggleClick }) => {
   const { data: categorys = [] } = useGetCategorysQuery();
   const { data: Subcategorys = [] } = useGetSubCategorysQuery();
   const { data: cartProducts = [] } = useGetCartQuery();
-  console.log({ cartProducts: cartProducts.length });
   useEffect(() => {
     document.addEventListener('scroll', () => {
       const scrollCheck = window.scrollY >= 100;

@@ -64,11 +64,6 @@
       "cartDiscountId": 1,
       "clientId": 1,
       "id": 2
-    },
-    {
-      "cartDiscountId": 1,
-      "clientId": 1,
-      "id": 3
     }
   ],
   "cartDiscount": [
@@ -83,23 +78,15 @@
   "cart_Product": [
     {
       "cartId": 1,
-      "quantity": 1,
+      "productId": 2,
+      "quantity": "0,21",
       "id": 1
     },
     {
-      "cartId": 1,
-      "quantity": 1,
+      "cartId": 2,
+      "productId": 1,
+      "quantity": 2,
       "id": 2
-    },
-    {
-      "cartId": 1,
-      "quantity": 1,
-      "id": 3
-    },
-    {
-      "cartId": 1,
-      "quantity": 1,
-      "id": 4
     }
   ],
   "client": [
@@ -201,6 +188,20 @@
       "label": "Houssem's pharmacy",
       "Description": "Sale of medication and parapharmaceutical products",
       "companyId": 1
+    }
+  ],
+  "Account": [
+    {
+      "username": "houssem",
+      "email": "houssemlahdhiri@gmail.com",
+      "password": "azerty",
+      "id": 1
+    },
+    {
+      "username": "admin",
+      "email": "houssemlahdhiri@gmail.com",
+      "password": "azerty",
+      "id": 2
     }
   ]
 }

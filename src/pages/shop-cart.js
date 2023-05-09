@@ -1,22 +1,15 @@
-// import { connect } from "react-redux";
-import Layout from '../components/layout/Layout';
-import { useSelector, useDispatch } from 'react-redux';
-import {
-  //   selectCartProducts,
-  //   deleteFromCart,
-  increaseQuantity,
-  decreaseQuantity,
-  //   clearCart,
-} from '../features/cart/cartSlice';
-import { Link } from 'react-router-dom';
+import React from "react";
+import Layout from "../components/layout/Layout";
+import { Link } from "react-router-dom";
 import {
   useGetCartQuery,
   useDeleteFromCartMutation,
   useDeleteFromCart_ProductMutation,
   useClearCartMutation,
   useGetCartProductQuery,
-} from '../api/cartApi';
-import { useGetProductsQuery } from '../api/productApi';
+  useUpdateCartProductMutation,
+} from "../api/cartApi";
+import { useGetProductsQuery } from "../api/productApi";
 
 const Cart = () => {
   const { data: cartProducts = [] } = useGetCartQuery();
@@ -25,83 +18,110 @@ const Cart = () => {
   const [deleteFromCart] = useDeleteFromCartMutation();
   const [deleteFromCart_Product] = useDeleteFromCart_ProductMutation();
   const [clearCart] = useClearCartMutation();
+  const [updateCartProducts] = useUpdateCartProductMutation();
+
   const price = () => {
     let price = 0;
-    products.forEach((item) => (price += item.price * quantity));
+    products.forEach((item) => (price += item.price * filteredQuantities));
 
     return price;
   };
-  const quantity = Productcart.map((sub) => sub.quantity)[0];
-  const cartId = cartProducts .map((sub) => sub.id)[0];
-  const productId = Productcart.map((sub) => sub.id===cartId)[0];
+  
+  const cartId = cartProducts.map((sub) => sub.id);
+  //const productId = Productcart.filter((sub) =>cartId.includes(sub.cartId) )
+  const productId = Productcart.map((sub) => sub.id);
 
-  const filteredProducts = products.filter(
-    (product) => product.id === productId
+  const filteredProducts = products.filter((product) =>
+    productId.includes(product.id)
   );
-  console.log({ filteredProducts });
+
+ // const quantity = Productcart.map((sub) => sub.quantity)[0];
+  const quantity = filteredProducts.map((product, index) => Productcart.find((item) => item.id === product.id)?.quantity ?? 0);
+console.log({quantity});
+const filteredQuantities = quantity.map((q, i) => ({ quantity: q, index: i }));
+
 
   const handleDeleteFromCart = (itemId) => {
+    console.log({itemId})
     deleteFromCart_Product(itemId);
     deleteFromCart(itemId);
+    window.location.reload();
+
   };
   const handleClearCart = () => {
     clearCart();
   };
+  const increaseQuantity = (itemId) => {
+    const index = cartProducts.findIndex((item) => item.id === itemId);
+    console.log({cartProducts})
+    console.log({itemId})
+    if (index === -1) return;
+    const newQuantity = quantity + 1;
+    updateCartProducts({ id: itemId, quantity: newQuantity });
+    window.location.reload();
 
-  //const cartProducts = useSelector(selectCartProducts);
+  };
+  const decreaseQuantity = (itemId) => {
+    const index = cartProducts.findIndex((item) => item.id === itemId);
 
-  const dispatch = useDispatch();
+    if (index === -1) return;
+    const newQuantity = quantity - 1;
+    
+    updateCartProducts({ id: itemId, quantity: newQuantity });
+   window.location.reload();
+
+  };
+
   const cartProductsCount = cartProducts.length;
 
   return (
     <>
-      <Layout parent='Home' sub='Shop' subChild='Cart'>
-        <section className='mt-50 mb-50'>
-          <div className='container'>
-            <div className='row'>
-              <div className='col-lg-8 mb-40'>
-                <h1 className='heading-2 mb-10'>Your Cart</h1>
-                <div className='d-flex justify-content-between'>
-                  <h6 className='text-body'>
-                    There are{' '}
-                    <span className='text-brand'>{cartProductsCount}</span>{' '}
+      <Layout parent="Home" sub="Shop" subChild="Cart">
+        <section className="mt-50 mb-50">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-8 mb-40">
+                <h1 className="heading-2 mb-10">Your Cart</h1>
+                <div className="d-flex justify-content-between">
+                  <h6 className="text-body">
+                    There are{" "}
+                    <span className="text-brand">{cartProductsCount}</span>{" "}
                     products in your cart
                   </h6>
-                  <h6 className='text-body'>
-                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                  <h6 className="text-body">
                     <a
-                      href='#'
-                      className='text-muted'
+                      href="#"
+                      className="text-muted"
                       onClick={(e) => handleClearCart()}
                     >
-                      <i className='fi-rs-trash mr-5'></i>
+                      <i className="fi-rs-trash mr-5"></i>
                       Clear Cart
                     </a>
                   </h6>
                 </div>
               </div>
             </div>
-            <div className='row'>
-              <div className='col-lg-8'>
-                <div className='table-responsive shopping-summery'>
-                  {cartProductsCount <= 0 && 'No Products'}
+            <div className="row">
+              <div className="col-lg-8">
+                <div className="table-responsive shopping-summery">
+                  {cartProductsCount <= 0 && "No Products"}
                   <table
                     className={
-                      cartProductsCount > 0 ? 'table table-wishlist' : 'd-none'
+                      cartProductsCount > 0 ? "table table-wishlist" : "d-none"
                     }
                   >
                     <thead>
-                      <tr className='main-heading'>
+                      <tr className="main-heading">
                         <th
-                          className='custome-checkbox start pl-30'
-                          colSpan='2'
+                          className="custome-checkbox start pl-30"
+                          colSpan="2"
                         >
                           Product
                         </th>
-                        <th scope='col'>Unit Price</th>
-                        <th scope='col'>Quantity</th>
-                        <th scope='col'>Subtotal</th>
-                        <th scope='col' className='end'>
+                        <th scope="col">Unit Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Subtotal</th>
+                        <th scope="col" className="end">
                           Remove
                         </th>
                       </tr>
@@ -109,71 +129,66 @@ const Cart = () => {
                     <tbody>
                       {filteredProducts.map((item, i) => (
                         <tr key={i}>
-                          <td className='image product-thumbnail'>
-                            <img src={item.image} alt='' />
+                          <td className="image product-thumbnail">
+                            <img src={item.image} alt="" />
                           </td>
 
-                          <td className='product-des product-name'>
-                            <h6 className='product-name'>
-                              <Link to='/products'>{item.name}</Link>
+                          <td className="product-des product-name">
+                            <h6 className="product-name">
+                              <Link to="/products">{item.name}</Link>
                             </h6>
-                            <div className='product-rate-cover'>
-                              <div className='product-rate d-inline-block'>
+                            <div className="product-rate-cover">
+                              <div className="product-rate d-inline-block">
                                 <div
-                                  className='product-rating'
+                                  className="product-rating"
                                   style={{
-                                    width: '90%',
+                                    width: "90%",
                                   }}
                                 ></div>
                               </div>
-                              <span className='font-small ml-5 text-muted'>
-                                {' '}
+                              <span className="font-small ml-5 text-muted">
+                                {" "}
                                 (4.0)
                               </span>
                             </div>
                           </td>
-                          <td className='price' data-title='Price'>
-                            <h4 className='text-brand'>{item.price}DT</h4>
+                          <td className="price" data-title="Price">
+                            <h4 className="text-brand">{item.price}DT</h4>
                           </td>
                           <td
-                            className='text-center detail-info'
-                            data-title='Stock'
+                            className="text-center detail-info"
+                            data-title="Stock"
                           >
-                            <div className='detail-extralink mr-15'>
-                              <div className='detail-qty border radius '>
-                                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                            <div className="detail-extralink mr-15">
+                              <div className="detail-qty border radius ">
                                 <a
-                                  onClick={(e) =>
-                                    dispatch(decreaseQuantity(item.id))
-                                  }
-                                  className='qty-down'
+                                  onClick={(e) => decreaseQuantity(item.id)}
+                                  className="qty-down"
                                 >
-                                  <i className='fi-rs-angle-small-down'></i>
+                                  <i className="fi-rs-angle-small-down"></i>
                                 </a>
-                                <span className='qty-val'>{quantity}</span>
-                                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                                <span className="qty-val">{filteredQuantities[i].quantity}</span>
+
                                 <a
-                                  onClick={(e) =>
-                                    dispatch(increaseQuantity(item.id))
-                                  }
-                                  className='qty-up'
+                                  onClick={(e) => increaseQuantity(item.id)}
+                                  className="qty-up"
                                 >
-                                  <i className='fi-rs-angle-small-up'></i>
+                                  <i className="fi-rs-angle-small-up"></i>
                                 </a>
                               </div>
                             </div>
                           </td>
-                          <td className='text-right' data-title='Cart'>
-                            <h4 className='text-body'>
+                          <td className="text-right" data-title="Cart">
+                            <h4 className="text-body">
                               ${quantity * item.price}
                             </h4>
                           </td>
-                          <td className='action' data-title='Remove'>
+                          <td className="action" data-title="Remove">
                             <a
                               onClick={(e) => handleDeleteFromCart(item)}
-                              className='text-muted'
+                              className="text-muted"
                             >
-                              <i className='fi-rs-trash'></i>
+                              <i className="fi-rs-trash"></i>
                             </a>
                           </td>
                         </tr>
@@ -181,30 +196,30 @@ const Cart = () => {
                     </tbody>
                   </table>
                 </div>
-                <div className='cart-action text-end'>
+                <div className="cart-action text-end">
                   {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                  <a className='btn '>
-                    <i className='fi-rs-shopping-bag mr-10'></i>
+                  <a className="btn ">
+                    <i className="fi-rs-shopping-bag mr-10"></i>
                     Continue Shopping
                   </a>
                 </div>
-                <div className='divider center_icon mt-50 mb-50'>
-                  <i className='fi-rs-fingerprint'></i>
+                <div className="divider center_icon mt-50 mb-50">
+                  <i className="fi-rs-fingerprint"></i>
                 </div>
-                <div className='row mb-50'>
-                  <div className='col-lg-6 col-md-12'>
-                    <div className='border p-md-4 p-30 border-radius cart-totals'>
-                      <div className='heading_s1 mb-3'>
+                <div className="row mb-50">
+                  <div className="col-lg-6 col-md-12">
+                    <div className="border p-md-4 p-30 border-radius cart-totals">
+                      <div className="heading_s1 mb-3">
                         <h4>Cart Totals</h4>
                       </div>
-                      <div className='table-responsive'>
-                        <table className='table'>
+                      <div className="table-responsive">
+                        <table className="table">
                           <tbody>
                             <tr>
-                              <td className='cart_total_label'>Total</td>
-                              <td className='cart_total_amount'>
+                              <td className="cart_total_label">Total</td>
+                              <td className="cart_total_amount">
                                 <strong>
-                                  <span className='font-xl fw-900 text-brand'>
+                                  <span className="font-xl fw-900 text-brand">
                                     {price()}DT
                                   </span>
                                 </strong>
@@ -214,32 +229,32 @@ const Cart = () => {
                         </table>
                       </div>
                       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                      <a href='#' className='btn '>
-                        <i className='fi-rs-box-alt mr-10'></i>
+                      <a href="#" className="btn ">
+                        <i className="fi-rs-box-alt mr-10"></i>
                         Proceed To CheckOut
                       </a>
                     </div>
                   </div>
-                  <div className='col-lg-6 col-md-12'>
-                    <div className='mb-30'>
-                      <div className='heading_s1 mb-3'>
+                  <div className="col-lg-6 col-md-12">
+                    <div className="mb-30">
+                      <div className="heading_s1 mb-3">
                         <h4>Apply Coupon</h4>
                       </div>
-                      <div className='total-amount'>
-                        <div className='left'>
-                          <div className='coupon'>
-                            <form action='#' target='_blank'>
-                              <div className='form-row row justify-content-center align-items-center'>
-                                <div className='form-group col-lg-6'>
+                      <div className="total-amount">
+                        <div className="left">
+                          <div className="coupon">
+                            <form action="#" target="_blank">
+                              <div className="form-row row justify-content-center align-items-center">
+                                <div className="form-group col-lg-6">
                                   <input
-                                    className='font-medium'
-                                    name='Coupon'
-                                    placeholder='Enter Your Coupon'
+                                    className="font-medium"
+                                    name="Coupon"
+                                    placeholder="Enter Your Coupon"
                                   />
                                 </div>
-                                <div className='form-group col-lg-6'>
-                                  <button className='btn  btn-sm'>
-                                    <i className='fi-rs-label mr-10'></i>
+                                <div className="form-group col-lg-6">
+                                  <button className="btn  btn-sm">
+                                    <i className="fi-rs-label mr-10"></i>
                                     Apply
                                   </button>
                                 </div>
@@ -260,19 +275,4 @@ const Cart = () => {
   );
 };
 
-// const mapStateToProps = (state) => ({
-//     cartItems: state.cart,
-//     activeCart: state.counter,
-// });
-
-// const mapDispatchToProps = {
-//     closeCart,
-//     increaseQuantity,
-//     decreaseQuantity,
-//     deleteFromCart,
-//     openCart,
-//     clearCart,
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Cart);
 export default Cart;

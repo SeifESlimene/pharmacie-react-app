@@ -18,7 +18,7 @@ const Footer = () => {
                 >
                   <div className='logo  mb-30'>
                     <Link to='/' className='mb-15'>
-                      <img src={logo} alt='logo' />
+                      {/* <img src={logo} alt='logo' /> */}
                     </Link>
                     <p className='font-lg text-heading'>
                       Votre pharmacie en ligne
@@ -107,7 +107,7 @@ const Footer = () => {
             </div>
             <div className='col-xl-12 col-lg-12 col-md-12'>
               <p className='font-sm mb-0 text-center'>
-                &copy; 2023, <strong className='text-brand'>Pharmacie</strong> - Créer Par S.H Info <br />
+                &copy; 2023, <strong className='text-brand'>Pharmacie</strong> <br />
                 Tous les droits sont reservés
               </p>
             </div>

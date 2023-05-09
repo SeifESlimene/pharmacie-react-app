@@ -1,110 +1,72 @@
-import { Link } from "react-router-dom";
 import Layout from "../components/layout/Layout";
+import React, { useState } from 'react';
+import { useRegisterMutation } from "../api/registrationApi";
+
 
 function Register() {
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [date_de_creation, setDate_de_creation] = useState('');
+
+  const [register, { isLoading, isError, isSuccess, error }] = useRegisterMutation();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    register({ username, email, password });
+  };
+
   return (
-    <>
-      <Layout parent="Home" sub="Pages" subChild="Login & Register">
-        <div className="page-content pt-150 pb-150">
-          <div className="container">
-            <div className="row">
-              <div className="col-xl-8 col-lg-10 col-md-12 m-auto">
-                <div className="row">
-                  <div className="col-lg-6 pr-30 d-none d-lg-block">
-                    <img
-                      className="border-radius-15"
-                      src="assets/imgs/page/login-1.png"
-                      alt=""
-                    />
-                  </div>
-                  <div className="col-lg-6 col-md-8">
-                    <div className="login_wrap widget-taber-content background-white">
-                      <div className="padding_eight_all bg-white">
-                        <div className="heading_s1">
-                          <h1 className="mb-5">Register</h1>
-                          <p className="mb-30">
-                            Don't have an account?{" "}
-                            <Link to="/page-register">
-                              <a>Create here</a>
-                            </Link>
-                          </p>
-                        </div>
-                        <form method="post">
-                          <div className="form-group">
-                            <input
-                              type="text"
-                              required=""
-                              name="email"
-                              placeholder="Username or Email *"
-                            />
-                          </div>
-                          <div className="form-group">
-                            <input
-                              required=""
-                              type="password"
-                              name="password"
-                              placeholder="Your password *"
-                            />
-                          </div>
-                          <div className="login_footer form-group">
-                            <div className="chek-form">
-                              <input
-                                type="text"
-                                required=""
-                                name="email"
-                                placeholder="Security code *"
-                              />
-                            </div>
-                            <span className="security-code">
-                              <b className="text-new">8</b>
-                              <b className="text-hot">6</b>
-                              <b className="text-sale">7</b>
-                              <b className="text-best">5</b>
-                            </span>
-                          </div>
-                          <div className="login_footer form-group mb-50">
-                            <div className="chek-form">
-                              <div className="custome-checkbox">
-                                <input
-                                  className="form-check-input"
-                                  type="checkbox"
-                                  name="checkbox"
-                                  id="exampleCheckbox1"
-                                  value=""
-                                />
-                                <label
-                                  className="form-check-label"
-                                  htmlFor="exampleCheckbox1"
-                                >
-                                  <span>Remember me</span>
-                                </label>
-                              </div>
-                            </div>
-                            <a className="text-muted" href="#">
-                              Forgot password?
-                            </a>
-                          </div>
-                          <div className="form-group">
-                            <button
-                              type="submit"
-                              className="btn btn-heading btn-block hover-up"
-                              name="login"
-                            >
-                              Log in
-                            </button>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <Layout parent="Home" sub="Shop" subChild="registration">
+
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="username">Username:</label>
+        <input
+          type="text"
+          id="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="date de création">Date de création:</label>
+        <input
+          type="date"
+          id="date de création"
+          value={date_de_creation}
+          onChange={(e) => setDate_de_creation(e.target.value)}
+        />
+      </div>
+      <button type="submit" disabled={isLoading}>
+        {isLoading ? 'Loading...' : 'Register'}
+      </button>
+      {isSuccess && <div>Registration successful!</div>}
+      {isError && <div>Error: {error.message}</div>}
+    </form>
       </Layout>
-    </>
   );
-}
+};
+
+  
+
 
 export default Register;
