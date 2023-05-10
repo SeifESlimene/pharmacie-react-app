@@ -16,7 +16,7 @@ import { useGetProductsQuery } from "../../api/productApi";
 
 const SingleProduct = ({ product }) => {
   const dispatch = useDispatch();
-  const [addProductsToCart, { isSuccess },refetch] = useAddProductsToCartMutation();
+  const [addProductsToCart, { isSuccess }] = useAddProductsToCartMutation();
   const [addCartProduct, { isLoading }] = useAddCartProductMutation();
   const [updateCartProducts] = useUpdateCartProductMutation();
   const { data: products = [] } = useGetProductsQuery();
@@ -31,7 +31,7 @@ const SingleProduct = ({ product }) => {
     return <div>Loading...</div>;
   }
   const handleCart = (product) => {
-    console.log({productId});
+    console.log({ productId });
     console.log(Productcart);
 
     const productInCart = Productcart.find(
@@ -39,27 +39,19 @@ const SingleProduct = ({ product }) => {
     );
     console.log(productInCart);
 
-    
     if (productInCart) {
       const newQuantity = productInCart.quantity + quantity;
       updateCartProducts({ id: productInCart.id, quantity: newQuantity });
       toast("Product added to Cart !");
       window.location.reload();
-
     } else {
-      //const productId = product.map((prod) => prod.id)[0];
       addProductsToCart({ product })
-      .unwrap()
-      .then((response) => {;
-      addCartProduct({productId, cartId:response.id}).unwrap();
-      toast("Product added to Cart !");
-      //refetch();
-      window.location.reload();
-
-        
-      });
-
-      
+        .unwrap()
+        .then((response) => {
+          addCartProduct({ productId, cartId: response.id }).unwrap();
+          toast("Product added to Cart !");
+          window.location.reload();
+        });
     }
     if (isSuccess) {
       toast("Product added to Cart !");

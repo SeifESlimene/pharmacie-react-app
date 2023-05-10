@@ -26,50 +26,46 @@ const Cart = () => {
 
     return price;
   };
-  
-  const cartId = cartProducts.map((sub) => sub.id);
-  //const productId = Productcart.filter((sub) =>cartId.includes(sub.cartId) )
+
   const productId = Productcart.map((sub) => sub.id);
 
   const filteredProducts = products.filter((product) =>
     productId.includes(product.id)
   );
 
- // const quantity = Productcart.map((sub) => sub.quantity)[0];
-  const quantity = filteredProducts.map((product, index) => Productcart.find((item) => item.id === product.id)?.quantity ?? 0);
-console.log({quantity});
-const filteredQuantities = quantity.map((q, i) => ({ quantity: q, index: i }));
-
+  const quantity = filteredProducts.map(
+    (product, index) =>
+      Productcart.find((item) => item.id === product.id)?.quantity ?? 0
+  );
+  const filteredQuantities = quantity.map((q, i) => ({
+    quantity: q,
+    index: i,
+  }));
 
   const handleDeleteFromCart = (itemId) => {
-    console.log({itemId})
     deleteFromCart_Product(itemId);
     deleteFromCart(itemId);
     window.location.reload();
-
   };
   const handleClearCart = () => {
     clearCart();
+    window.location.reload();
   };
-  const increaseQuantity = (itemId) => {
+  const increaseQuantity = (itemId, quantity) => {
     const index = cartProducts.findIndex((item) => item.id === itemId);
-    console.log({cartProducts})
-    console.log({itemId})
     if (index === -1) return;
     const newQuantity = quantity + 1;
     updateCartProducts({ id: itemId, quantity: newQuantity });
     window.location.reload();
-
   };
-  const decreaseQuantity = (itemId) => {
+  const decreaseQuantity = (itemId, quantity) => {
     const index = cartProducts.findIndex((item) => item.id === itemId);
 
     if (index === -1) return;
     const newQuantity = quantity - 1;
-    
-    updateCartProducts({ id: itemId, quantity: newQuantity });
-   window.location.reload();
 
+    updateCartProducts({ id: itemId, quantity: newQuantity });
+    window.location.reload();
   };
 
   const cartProductsCount = cartProducts.length;
@@ -162,15 +158,27 @@ const filteredQuantities = quantity.map((q, i) => ({ quantity: q, index: i }));
                             <div className="detail-extralink mr-15">
                               <div className="detail-qty border radius ">
                                 <a
-                                  onClick={(e) => decreaseQuantity(item.id)}
+                                  onClick={(e) =>
+                                    decreaseQuantity(
+                                      item.id,
+                                      filteredQuantities[i].quantity
+                                    )
+                                  }
                                   className="qty-down"
                                 >
                                   <i className="fi-rs-angle-small-down"></i>
                                 </a>
-                                <span className="qty-val">{filteredQuantities[i].quantity}</span>
+                                <span className="qty-val">
+                                  {filteredQuantities[i].quantity}
+                                </span>
 
                                 <a
-                                  onClick={(e) => increaseQuantity(item.id)}
+                                  onClick={(e) =>
+                                    increaseQuantity(
+                                      item.id,
+                                      filteredQuantities[i].quantity
+                                    )
+                                  }
                                   className="qty-up"
                                 >
                                   <i className="fi-rs-angle-small-up"></i>
@@ -180,7 +188,7 @@ const filteredQuantities = quantity.map((q, i) => ({ quantity: q, index: i }));
                           </td>
                           <td className="text-right" data-title="Cart">
                             <h4 className="text-body">
-                              ${quantity * item.price}
+                              {filteredQuantities[i].quantity * item.price}DT
                             </h4>
                           </td>
                           <td className="action" data-title="Remove">
@@ -197,8 +205,7 @@ const filteredQuantities = quantity.map((q, i) => ({ quantity: q, index: i }));
                   </table>
                 </div>
                 <div className="cart-action text-end">
-                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                  <a className="btn ">
+                  <a href="/" className="btn ">
                     <i className="fi-rs-shopping-bag mr-10"></i>
                     Continue Shopping
                   </a>
