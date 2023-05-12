@@ -21,10 +21,12 @@ const Cart = () => {
   const [updateCartProducts] = useUpdateCartProductMutation();
 
   const price = () => {
-    let price = 0;
-    products.forEach((item) => (price += item.price * filteredQuantities));
-
-    return price;
+    let totalPrice = 0;
+    filteredQuantities.forEach((item) => {
+      const product = filteredProducts[item.index];
+      totalPrice += product.price * item.quantity;
+    });
+    return totalPrice;
   };
 
   const productId = Productcart.map((sub) => sub.id);
@@ -235,8 +237,7 @@ const Cart = () => {
                           </tbody>
                         </table>
                       </div>
-                      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                      <a href="#" className="btn ">
+                      <a href="/page-chekout" className="btn ">
                         <i className="fi-rs-box-alt mr-10"></i>
                         Proceed To CheckOut
                       </a>

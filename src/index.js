@@ -27,6 +27,8 @@ import Product from './pages/products';
 import Products from './pages/products';
 import Test from './pages/test';
 import Category from './pages/page-category';
+import Chekout from './pages/page-chekout';
+
 
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -45,6 +47,7 @@ const router = createBrowserRouter(
       <Route path='/products/:slug' element={<Product />} />
       <Route path='/products' element={<Products />} />
       <Route path='/page-category/:subcategoryId' element={<Category />} />
+      <Route path='/page-chekout' element={<Chekout />} />
       <Route path='/testdb' element={<Test />} />
      
     </>

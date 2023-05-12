@@ -9,7 +9,7 @@ import { productApi } from '../api/productApi';
 import { cartApi } from '../api/cartApi';
 import { categoryApi } from '../api/categoryApi';
 import { registrationApi } from '../api/registrationApi';
-
+import { orderApi } from '../api/orderApi';
 
 
 export const store = configureStore({
@@ -18,6 +18,7 @@ export const store = configureStore({
     [cartApi.reducerPath]: cartApi.reducer,
     [categoryApi.reducerPath]: categoryApi.reducer,
     [registrationApi.reducerPath]: registrationApi.reducer,
+    [orderApi.reducerPath]: orderApi.reducer,
 
     counter: counterReducer,
     cart: cartReducer,
@@ -26,5 +27,5 @@ export const store = configureStore({
     quickView: quickViewReducer,
     // localStorage: localStorageReducer
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(productApi.middleware, cartApi.middleware, categoryApi.middleware, registrationApi.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(productApi.middleware, cartApi.middleware,orderApi.middleware, categoryApi.middleware, registrationApi.middleware),
 });
