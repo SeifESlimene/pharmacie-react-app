@@ -1,21 +1,20 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import cartSlice, { addToCart } from '../features/cart/cartSlice';
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const cartApi = createApi({
-  reducerPath: 'cartApi',
-  baseQuery: fetchBaseQuery({ baseUrl: ' http://localhost:3002' }),
+  reducerPath: "cartApi",
+  baseQuery: fetchBaseQuery({ baseUrl: " http://localhost:3002" }),
   endpoints: (builder) => ({
     addProductsToCart: builder.mutation({
       query: (data) => ({
         url: `/cart`,
-        method: 'POST',
+        method: "POST",
         body: {
           id: data.id,
           cartDiscountId: 1,
           clientId: 1,
         },
         headers: {
-          'Content-type': 'application/json; charset=UTF-8',
+          "Content-type": "application/json; charset=UTF-8",
         },
       }),
     }),
@@ -23,40 +22,52 @@ export const cartApi = createApi({
       query: () => `/cart`,
     }),
     addCartProduct: builder.mutation({
-      query: (id) => ({
+      query: (id) => {console.log({id}) 
+      return({
         url: `/cart_Product`,
-        method: 'POST',
+        method: "POST",
         body: {
-          cartId: 1,
-          productId:id,
+          cartId:id.cartId,
+          productId: id.productId,
           quantity: 1,
         },
         headers: {
-          'Content-type': 'application/json; charset=UTF-8',
+          "Content-type": "application/json; charset=UTF-8",
         },
-      }),
+      })
+    }
     }),
 
     getCartProduct: builder.query({
-      query: (id) => `/cart_Product`,
+      query: () => `/cart_Product`,
+    }),
+    updateCartProduct: builder.mutation({
+     query: ({id, quantity}) => {
+      console.log({id, quantity});
+      return ({
+        url: `cart_Product/${id}`,
+        method: 'PATCH',
+        body: { quantity },
+      })
+     }
     }),
 
     deleteFromCart: builder.mutation({
       query: ({ id }) => ({
         url: `/cart/${id}`,
-        method: 'DELETE',
+        method: "DELETE",
       }),
     }),
     deleteFromCart_Product: builder.mutation({
       query: ({ id }) => ({
         url: `/cart_product/${id}`,
-        method: 'DELETE',
+        method: "DELETE",
       }),
     }),
     clearCart: builder.mutation({
       query: () => ({
-        url: '/cart',
-        method: 'DELETE',
+        url: "/cart",
+        method: "DELETE",
       }),
     }),
   }),
@@ -69,4 +80,5 @@ export const {
   useAddCartProductMutation,
   useGetCartProductQuery,
   useGetCartQuery,
+  useUpdateCartProductMutation,
 } = cartApi;
